@@ -63,15 +63,15 @@ function getStorageFolderPid() {
 		$sql = '';
 	}
 
-   $optionList = array();
+   $optionList = [];
 
    $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,cat', 'tx_kkdownloader_cat', "hidden=0 AND deleted=0 $sql order by cat");
 
-	$optionList[0] = array(0 => 'all', 1 => 0);
+	$optionList[0] = [0 => 'all', 1 => 0];
 	$i = 1;
 //  while($row = mysql_fetch_object($res)){
 	while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-    $optionList[$i] = array(0 => $row['cat'], 1 => $row['uid']);
+    $optionList[$i] = [0 => $row['cat'], 1 => $row['uid']];
     $i++;
     }
 

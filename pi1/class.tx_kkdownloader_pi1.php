@@ -53,7 +53,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
    var $showCats;
    var $template;
    var $debug = false;
-   var $internal = array();
+   var $internal = [];
 
 	/**
 	 * The main method of the PlugIn
@@ -69,15 +69,15 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$this->pi_setPiVarDefaults(); // Set default piVars from TS
 
 		$this->debug = $this->conf['debug'];
-		
-		
+
+
       if ($this->debug > 1) print '<style>body {background:white !important; overflow:auto !important;} #header, #col1, #col2, #col3, #col3-2{left:500% !important; </style><div id="kk_downloader-debug" style="background:#fcfcfc;z-index:1200;} "><h1>Start</h1>';
 		// test if language version available
 		// Die im Backend definierten Sprachen laden und
 		// die Handhabung f�r �bersetzungen ermitteln.
 		$lres = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'sys_language', '1=1' . $this->cObj->enableFields('sys_language'));
 
-		$this->langArr = array();
+		$this->langArr = [];
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($lres)) {
 		    $this->langArr[$row['uid']] = $row;
 		}
@@ -90,7 +90,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		if(empty($langUID)){
 			$langUID = '0';
 		}
-		
+
 		// Cache abstellen
 //		$GLOBALS["TSFE"]->set_no_cache();
 
@@ -108,7 +108,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		// flexform Integration
 		$this->pi_initPIflexform(); // Init and get the flexform data of the plugin
 
-      
+
    	// Template settings
 		$templateflex_file = trim($this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'template_file', 'sDEF'));
       $templateflex_file = $templateflex_file ? $templateflex_file : $this->conf['templateFile'];
@@ -160,8 +160,8 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
       $where = "tx_kkdownloader_images.deleted = 0 AND tx_kkdownloader_images.hidden = 0 ";
       $where1 = $where2 = '';
-      
-      $markerArray = array();
+
+      $markerArray = [];
 
 		if($view == 'SINGLE') {
 			// get record data (multilanguage check)
@@ -235,7 +235,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
    		if(empty($numCheck) && $langUID > 0) $langUID = 0;
 
          // WHERE parts:
-         
+
 	      $downloadfolder = $GLOBALS['TYPO3_DB']->quoteStr($this->cObj->data['pages'],'tt_content');
 	      if ($this->debug > 1) {
             print '<br>download-folder = "' . $downloadfolder . '"';
@@ -305,7 +305,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
   		if ($this->debug) print '<br>$Anzahl Records "num" = "' . $num . '"';
 
-		
+
 		// if no sql data available
 		if(empty($num)) {
 			$content = '<p style="color:#000;">' . $this->pi_getLL('novalue') . '</p>';
@@ -435,13 +435,13 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 							$imageext = $this->checkMimeType($filepath);
 
 							// allowed mime types
-							$imagemimetypes = array(
+							$imagemimetypes = [
 									'image/gif',
 									'image/jpeg',
 									'image/png',
 									'image/bmp',
 									'image/tiff',
-									);
+                            ];
 							// if no preview image
 							if(in_array($imageext,$imagemimetypes)) {
 							 	$img = $this->conf["image."];
@@ -477,7 +477,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 					$id=$this->conf["singlePID"];
 					// singleID of
 					$singleID = $value['uid'];
-					$more = $this->pi_linkToPage($this->pi_getLL('more'),$id,$target='',$urlParameters=array('tx_kkdownloader_pi1[uid]' => $singleID));
+					$more = $this->pi_linkToPage($this->pi_getLL('more'),$id,$target='',$urlParameters= ['tx_kkdownloader_pi1[uid]' => $singleID]);
 					$markerArray['###MORE###'] = $more;
 
                // Ist der Marker ###LINKS### vorhanden!?
@@ -498,7 +498,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 						$markerArray['###CLICKS###'] = '';
 						$markerArray['###TEXT_CLICKS###'] = '';
 					}
-					
+
 					// print out CATs in List and Single view!?
 					if ($this->debug > 1) print '<br><i>$showCats = "' . $this->showCats .'"</i>';
 					if (!empty($this->showCats) && ($this->showCats == true || $this->showCats == '1')) {
@@ -538,7 +538,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 						$markerArray['###IPLASTDOWNLOAD###'] = '';
 						$markerArray['###TEXT_IPLASTDOWNLOAD###'] = '';
                }
-               
+
 					if(!empty($value['description'])){
                   $crop = intval($this->conf["stdwrap."]['description_stdwrap.']['crop']);
               		$crop = $crop > 10 ? $crop : 10000;
@@ -582,7 +582,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			    $content .= $this->cObj->substituteMarkerArrayCached($this->template['template'], $markerArray, $subpartArray);
 		    } else {
 				// substitue single template
-		       $content = $this->cObj->substituteMarkerArrayCached($this->template['template'], array(), $markerArray);
+		       $content = $this->cObj->substituteMarkerArrayCached($this->template['template'], [], $markerArray);
 		    }
 		} // if(empty($num))
 
@@ -660,7 +660,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
             // render the LINK-Part:
 				$content.='<div class="linkOutput"><div class="dl-link">' . $strDLI . '&nbsp;';
-				$content.=$this->pi_linkTP($fileName, $urlParameters=array('download' => $val, 'did' => $uid));
+				$content.=$this->pi_linkTP($fileName, $urlParameters= ['download' => $val, 'did' => $uid]);
             $content.='</div>';
 
             // add the filesize block, if desired
@@ -726,7 +726,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	function generateFileItems($uid, $downloaddescription="1", $downloadIcon="") {
 
          if ($this->debug > 1) print '<h1 style="color:#F00;">START generateFileItems</h1>';
-         
+
          $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
                'tx_kkdownloader_images.image, tx_kkdownloader_images.downloaddescription',
                'tx_kkdownloader_images',
@@ -781,7 +781,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 					}
 
                $ma['###TEXT_FILE###'] = $this->pi_getLL('txtFILE');
-               $ma['###FILE###'] = $this->pi_linkTP($fileName, $urlParameters=array('download' => $val, 'did' => $uid));
+               $ma['###FILE###'] = $this->pi_linkTP($fileName, $urlParameters= ['download' => $val, 'did' => $uid]);
                $ma['###ICON###'] = $strDLI;
 
                // add the filesize block, if desired
@@ -876,7 +876,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 */
 	function format_size($size, $round = 0) {
     //Size must be bytes!
-    $sizes = array(' Bytes', ' kB', ' MB', ' GB', ' TB', ' PB', ' EB', ' ZB', ' YB');
+    $sizes = [' Bytes', ' kB', ' MB', ' GB', ' TB', ' PB', ' EB', ' ZB', ' YB'];
     for ($i=0; $size > 1024 && $i < count($sizes) - 1; $i++) $size /= 1024;
     return round($size,$round).$sizes[$i];
 }
@@ -935,19 +935,19 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
 		exit;
 	} // function downloadImage
-	
-	
+
+
 	/**
 	 * replace all possible textmarkers:
 	 * call by ref: &
 	 * @param	string	$markerArray: self-explanatory	 *
 	*/
 	function fillTextMarker(&$markerArray){
-	
+
       // find first position of a TEXT_marker and the full length of the string
       $i = strpos($this->template['template'], '###TEXT_', 0);
       $l = strlen($this->template['template']);
-      
+
       // no TEXT_marker!? go back
       if ($i <= 0) return;
 
@@ -966,7 +966,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
          $LLi = 'txt' . $tt;
          $markerArray[$mi] = $this->pi_getLL($LLi);
       }
-	
+
       if ($this->debug > 1) {
          print '<div style="color:#484;">Textmarker:<br />';
          print_r ($markerArray);
@@ -975,7 +975,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
 		return;
 	} // end function fillTextMarker
-	
+
 	/**
 	 * Getting the page browser for paging
 	 *
@@ -990,7 +990,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
       }
 		$newsCount = $this->internal['res_count'] ;
 		$begin_at = intval($this->piVars['pointer']) * $this->internal['results_at_a_time'];
-		
+
       if ($this->debug > 1) print '<p style="color:#0df;">$newsCount = '.$newsCount.'</p>';
       if ($this->debug > 1) print '<p style="color:#0df;">$begin_at = '.$begin_at.'</p>';
 
@@ -999,7 +999,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		if ($newsCount > $begin_at + $this->internal['results_at_a_time']) {
 			$next = ($begin_at + $this->internal['results_at_a_time'] > $newsCount) ? $newsCount - $this->internal['results_at_a_time']:$begin_at + $this->internal['results_at_a_time'];
 			$next = intval($next / $this->internal['results_at_a_time']);
-			$params = array('pointer' => $next);
+			$params = ['pointer' => $next];
 			$next_link = $this->pi_linkTP_keepPIvars($this->pi_getLL('pi_list_browseresults_next', 'Next >'), $params);
 			$markerArray['###LINK_NEXT###'] = $this->cObj->stdWrap($next_link, $this->conf['pageBrowser.']['next_stdWrap.']);
 
@@ -1011,7 +1011,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		if ($begin_at) {
 			$prev = ($begin_at - $this->internal['results_at_a_time'] < 0)?0:$begin_at - $this->internal['results_at_a_time'];
 			$prev = intval($prev / $this->internal['results_at_a_time']);
-			$params = array('pointer' => $prev);
+			$params = ['pointer' => $prev];
 			$prev_link = $this->pi_linkTP_keepPIvars($this->pi_getLL('pi_list_browseresults_prev', '< Previous'), $params);
 			$markerArray['###LINK_PREV###'] = $this->cObj->stdWrap($prev_link, $this->conf['pageBrowser.']['previous_stdWrap.']);
 		} else {
@@ -1025,8 +1025,8 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
          print_r ($params);
          print '</p>';
       }
-      
-      
+
+
 		$firstPage = 0;
 		$lastPage = $pages = ceil($newsCount / $this->internal['results_at_a_time']);
 		$actualPage = floor($begin_at / $this->internal['results_at_a_time']);
@@ -1060,7 +1060,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 				$markerArray['###PAGES###'] .= $this->cObj->stdWrap($item, $this->conf['pageBrowser.']['activepage_stdWrap.']) . ' ';
 			} else {
 				$item = ($this->conf['pageBrowser.']['showPBrowserText']?$this->pi_getLL('pi_list_browseresults_page', 'Page'):'') . (string)($i + 1);
-				$params = array('pointer' => $i);
+				$params = ['pointer' => $i];
 				$link = $this->pi_linkTP_keepPIvars($this->cObj->stdWrap($item, $this->conf['pageBrowser.']['pagelink_stdWrap.']) , $params) . ' ';
 				$markerArray['###PAGES###'] .= $this->cObj->stdWrap($link, $this->conf['pageBrowser.']['page_stdWrap.']);
 			}
@@ -1072,7 +1072,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
          print_r ($params);
          print '<br>$markerArray[###PAGES###] = '.$markerArray['###PAGES###'].'</p>';
       }
-      
+
 		$end_at = ($begin_at + $this->internal['results_at_a_time']);
 
 		if ($this->conf['pageBrowser.']['showResultCount']) {
@@ -1081,7 +1081,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
     			sprintf(
 					str_replace('###SPAN_BEGIN###','<span'.$this->pi_classParam('browsebox-strong').'>',$this->pi_getLL('pi_list_browseresults_displays','Displaying results ###SPAN_BEGIN###%s to %s</span> out of ###SPAN_BEGIN###%s</span>')),
 					$this->internal['res_count'] > 0 ? ($begin_at+1) : 0,
-					min(array($this->internal['res_count'],$end_at )),
+					min([$this->internal['res_count'],$end_at]),
 					$this->internal['res_count']
 				) :
 				$this->pi_getLL('pi_list_browseresults_noResults','Sorry, no items were found.'));

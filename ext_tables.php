@@ -61,7 +61,7 @@ $GLOBALS['TCA']["tx_kkdownloader_cat"] = array (
 
 // t3lib_extMgm::addPiFlexFormValue($_EXTKEY.'_pi1', 'FILE:EXT:'.$_EXTKEY.'/pi1/flexform.xml');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-	$_EXTKEY.'_pi1', 
+	$_EXTKEY.'_pi1',
 	'FILE:EXT:'.$_EXTKEY.'/pi1/flexform.xml'
 );
 
@@ -88,10 +88,10 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi
 
 // t3lib_extMgm::addPlugin(array('LLL:EXT:kk_downloader/locallang_db.xml:tt_content.list_type_pi1', $_EXTKEY.'_pi1'),'list_type');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
-	array(
+	[
 		'LLL:EXT:kk_downloader/locallang_db.xml:tt_content.list_type_pi1',
 		$_EXTKEY . '_pi1'
-	),
+    ],
 	'list_type'
 );
 ?>

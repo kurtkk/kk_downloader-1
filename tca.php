@@ -1,66 +1,66 @@
 <?php
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
-$GLOBALS['TCA']["tx_kkdownloader_images"] = array (
+$GLOBALS['TCA']["tx_kkdownloader_images"] = [
 	"ctrl" => $GLOBALS['TCA']["tx_kkdownloader_images"]["ctrl"],
-	"interface" => array (
+	"interface" => [
 		"showRecordFieldList" => "sys_language_uid,l18n_parent,l18n_diffsource,hidden,name,image,description,longdescription,clicks,cat"
-	),
+    ],
 	"feInterface" => $GLOBALS['TCA']["tx_kkdownloader_images"]["feInterface"],
-	"columns" => array (
-		'sys_language_uid' => array (
+	"columns" => [
+		'sys_language_uid' => [
 			'exclude' => 1,
 			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
-			'config' => array (
+			'config' => [
 				'type'                => 'select',
-				'renderType' 		  => 'selectSingle',				
+				'renderType' 		  => 'selectSingle',
 				'foreign_table'       => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0)
-				)
-			)
-		),
-		'l18n_parent' => array (
+				'items' => [
+					['LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1],
+					['LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0]
+                ]
+            ]
+        ],
+		'l18n_parent' => [
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
 			'exclude'     => 1,
 			'label'       => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
-			'config'      => array (
+			'config'      => [
 				'type'  => 'select',
-				'items' => array (
-					array('', 0),
-				),
-				'renderType' 		  => 'selectSingle',				
+				'items' => [
+					['', 0],
+                ],
+				'renderType' 		  => 'selectSingle',
 				'foreign_table'       => 'tx_kkdownloader_images',
 				'foreign_table_where' => 'AND tx_kkdownloader_images.pid=###CURRENT_PID### AND tx_kkdownloader_images.sys_language_uid IN (-1,0)',
-			)
-		),
-		'l18n_diffsource' => array (
-			'config' => array (
+            ]
+        ],
+		'l18n_diffsource' => [
+			'config' => [
 				'type' => 'passthrough'
-			)
-		),
-		'hidden' => array (
+            ]
+        ],
+		'hidden' => [
 			'exclude' => 1,
 			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-			'config'  => array (
+			'config'  => [
 				'type'    => 'check',
 				'default' => '0'
-			)
-		),
-		"name" => Array (
+            ]
+        ],
+		"name" => [
 			"exclude" => 1,
 			"label" => "LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.name",
-			"config" => Array (
+			"config" => [
 				"type" => "input",
 				"size" => "30",
-			)
-		),
-		"cat" => Array (
+            ]
+        ],
+		"cat" => [
 			"exclude" => 1,
 			"label" => "LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.cat",
-			"config" => Array (
+			"config" => [
 				"type" => "select",
 				'renderType' 	=> 'selectSingleBox',
 				"foreign_table" => "tx_kkdownloader_cat",
@@ -69,12 +69,12 @@ $GLOBALS['TCA']["tx_kkdownloader_images"] = array (
 				"size" => 4,
 				"minitems" => 0,
 				"maxitems" => 10,
-			)
-		),
-		"image" => Array (
+            ]
+        ],
+		"image" => [
 			"exclude" => 1,
 			"label" => "LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.image",
-			"config" => Array (
+			"config" => [
 				"type" => "group",
 				"internal_type" => "file",
 				"allowed" => "",
@@ -85,12 +85,12 @@ $GLOBALS['TCA']["tx_kkdownloader_images"] = array (
 				"size" => 10,
 				"minitems" => 0,
 				"maxitems" => 10,
-			)
-		),
-		"imagepreview" => Array (
+            ]
+        ],
+		"imagepreview" => [
 			"exclude" => 1,
 			"label" => "LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.imagepreview",
-			"config" => Array (
+			"config" => [
 				"type" => "group",
 				"internal_type" => "file",
 				"allowed" => "jpg,gif,png",
@@ -100,129 +100,129 @@ $GLOBALS['TCA']["tx_kkdownloader_images"] = array (
 				"size" => 1,
 				"minitems" => 0,
 				"maxitems" => 1,
-			)
-		),
-		"downloaddescription" => Array (
+            ]
+        ],
+		"downloaddescription" => [
 			"exclude" => 1,
 			"label" => "LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.imagedescription",
-			"config" => Array (
+			"config" => [
 				"type" => "text",
 				"cols" => "30",
 				"rows" => "5",
-			)
-		),
-		"description" => Array (
+            ]
+        ],
+		"description" => [
 			"exclude" => 1,
 			"label" => "LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.description",
-			"config" => Array (
+			"config" => [
 				"type" => "text",
 				"cols" => "30",
 				"rows" => "3",
-			)
-		),
-		"longdescription" => Array (
+            ]
+        ],
+		"longdescription" => [
 			"exclude" => 1,
 			"label" => "LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.longdescription",
-			"config" => Array (
+			"config" => [
 				"type" => "text",
 				"cols" => "30",
 				"rows" => "5",
-				"wizards" => Array(
+				"wizards" => [
 					"_PADDING" => 2,
-					"RTE" => array(
+					"RTE" => [
 						"notNewRecords" => 1,
 						"RTEonly" => 1,
 						"type" => "script",
 						"title" => "Full screen Rich Text Editing|Formatteret redigering i hele vinduet",
 						"icon" => "wizard_rte2.gif",
-						'module' => array(
+						'module' => [
 							'name' => 'wizard_rte'
-						)
-					),
-				),
-			)
-		),
-		"clicks" => Array (
+                        ]
+                    ],
+                ],
+            ]
+        ],
+		"clicks" => [
 			"exclude" => 1,
 			"label" => "LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.clicks",
-			"config" => Array (
+			"config" => [
 				"type" => "input",
 				"size" => "30",
-			)
-		),
-	),
-	"types" => array (
-		"0" => array("showitem" => "sys_language_uid;;;;1-1-1, l18n_parent, l18n_diffsource, hidden;;1, name, image, cat, imagepreview, downloaddescription, description,longdescription;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[mode=ts], clicks")
-	),
-	"palettes" => array (
-		"1" => array("showitem" => "")
-	)
-);
+            ]
+        ],
+    ],
+	"types" => [
+		"0" => ["showitem" => "sys_language_uid;;;;1-1-1, l18n_parent, l18n_diffsource, hidden;;1, name, image, cat, imagepreview, downloaddescription, description,longdescription;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[mode=ts], clicks"]
+    ],
+	"palettes" => [
+		"1" => ["showitem" => ""]
+    ]
+];
 
 
 
-$GLOBALS['TCA']["tx_kkdownloader_cat"] = array (
+$GLOBALS['TCA']["tx_kkdownloader_cat"] = [
 	"ctrl" => $GLOBALS['TCA']["tx_kkdownloader_cat"]["ctrl"],
-	"interface" => array (
+	"interface" => [
 		"showRecordFieldList" => "sys_language_uid,l18n_parent,l18n_diffsource,hidden,cat"
-	),
+    ],
 	"feInterface" => $GLOBALS['TCA']["tx_kkdownloader_cat"]["feInterface"],
-	"columns" => array (
-		'sys_language_uid' => array (
+	"columns" => [
+		'sys_language_uid' => [
 			'exclude' => 1,
 			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
-			'config' => array (
+			'config' => [
 				'type'                => 'select',
 				'renderType' 		  => 'selectSingle',
 				'foreign_table'       => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0)
-				)
-			)
-		),
-		'l18n_parent' => array (
+				'items' => [
+					['LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1],
+					['LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0]
+                ]
+            ]
+        ],
+		'l18n_parent' => [
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
 			'exclude'     => 1,
 			'label'       => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
-			'config'      => array (
+			'config'      => [
 				'type'  => 'select',
-				'renderType' 		  => 'selectSingle',			
-				'items' => array (
-					array('', 0),
-				),
+				'renderType' 		  => 'selectSingle',
+				'items' => [
+					['', 0],
+                ],
 				'foreign_table'       => 'tx_kkdownloader_cat',
 				'foreign_table_where' => 'AND tx_kkdownloader_cat.pid=###CURRENT_PID### AND tx_kkdownloader_cat.sys_language_uid IN (-1,0)',
-			)
-		),
-		'l18n_diffsource' => array (
-			'config' => array (
+            ]
+        ],
+		'l18n_diffsource' => [
+			'config' => [
 				'type' => 'passthrough'
-			)
-		),
-		'hidden' => array (
+            ]
+        ],
+		'hidden' => [
 			'exclude' => 1,
 			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-			'config'  => array (
+			'config'  => [
 				'type'    => 'check',
 				'default' => '0'
-			)
-		),
-		"cat" => Array (
+            ]
+        ],
+		"cat" => [
 			"exclude" => 1,
 			"label" => "LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_cat.cat",
-			"config" => Array (
+			"config" => [
 				"type" => "input",
 				"size" => "30",
-			)
-		),
-	),
-	"types" => array (
-		"0" => array("showitem" => "sys_language_uid;;;;1-1-1, l18n_parent, l18n_diffsource, hidden;;1, cat")
-	),
-	"palettes" => array (
-		"1" => array("showitem" => "")
-	)
-);
+            ]
+        ],
+    ],
+	"types" => [
+		"0" => ["showitem" => "sys_language_uid;;;;1-1-1, l18n_parent, l18n_diffsource, hidden;;1, cat"]
+    ],
+	"palettes" => [
+		"1" => ["showitem" => ""]
+    ]
+];
 ?>
