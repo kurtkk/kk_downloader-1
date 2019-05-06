@@ -23,7 +23,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-// raus für TYPO3 V6.2.xx require_once(PATH_tslib.'class.tslib_pibase.php');
+// raus fï¿½r TYPO3 V6.2.xx require_once(PATH_tslib.'class.tslib_pibase.php');
 
 
 /**
@@ -74,7 +74,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
       if ($this->debug > 1) print '<style>body {background:white !important; overflow:auto !important;} #header, #col1, #col2, #col3, #col3-2{left:500% !important; </style><div id="kk_downloader-debug" style="background:#fcfcfc;z-index:1200;} "><h1>Start</h1>';
 		// test if language version available
 		// Die im Backend definierten Sprachen laden und
-		// die Handhabung für Übersetzungen ermitteln.
+		// die Handhabung fï¿½r ï¿½bersetzungen ermitteln.
 		$lres = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'sys_language', '1=1' . $this->cObj->enableFields('sys_language'));
 
 		$this->langArr = array();
@@ -314,7 +314,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			$content .= '<p style="color:#fa0;">where = "' . $where.$where1.$where2 . '"</p>';
 			$content .= '<p style="color:#f00;">group = "' . $group . '"</p>';
 			$content .= '<p style="color:#00f;">order = "' . $order . '"</p>';
-		// let´s get the download files
+		// letï¿½s get the download files
 		} else {
 
 				// if  S I N G L E   view
@@ -398,7 +398,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
                print '</p>';
             }
 
-//          Text-Marker füllen, generell ALLE, die im Template stehen!
+//          Text-Marker fï¿½llen, generell ALLE, die im Template stehen!
             $this->fillTextMarker($markerArray);
 
 
@@ -482,7 +482,7 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
                // Ist der Marker ###LINKS### vorhanden!?
                $bLinks = strpos($this->template['template'], '###LINKS###') > 0;
-               // NEU: Einzel-Marker für die Dateiwerte: ###FILE###, ###FILESIZE###, ###FILEMDATE###
+               // NEU: Einzel-Marker fï¿½r die Dateiwerte: ###FILE###, ###FILESIZE###, ###FILEMDATE###
 					if (!empty($this->template['template_filedetail']) AND strpos($this->template['template_filedetail'], '###FILE###') AND $bLinks) {
                   // replace submarker-area with content:
                   $markerArray['###LINKS###'] = $this->generateFileItems($value['uid'],$this->conf["linkdescription"],$this->conf["downloadIcon"]);
@@ -1097,8 +1097,8 @@ class tx_kkdownloader_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 } // class end
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/kk_downloader/pi1/class.tx_kkdownloader_pi1.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/kk_downloader/pi1/class.tx_kkdownloader_pi1.php']);
+if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/kk_downloader/pi1/class.tx_kkdownloader_pi1.php'])	{
+	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/kk_downloader/pi1/class.tx_kkdownloader_pi1.php']);
 }
 
 ?>

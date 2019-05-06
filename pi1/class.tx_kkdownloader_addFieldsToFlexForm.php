@@ -58,7 +58,7 @@ function getStorageFolderPid() {
  	global $TSFE,$LANG;
 	$this->storagePid = $this->getStorageFolderPid();
 	if(!empty($this->storagePid)) {
-		$sql = "AND pid=$this->storagePid";	
+		$sql = "AND pid=$this->storagePid";
 	}else{
 		$sql = '';
 	}
@@ -80,8 +80,8 @@ function getStorageFolderPid() {
    return $config;
  }
 }
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/kk_downloader/pi1/class.tx_kkdownloader_addFieldsToFlexForm.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/kk_downloader/pi1/class.tx_kkdownloader_addFieldsToFlexForm.php']);
+if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/kk_downloader/pi1/class.tx_kkdownloader_addFieldsToFlexForm.php'])	{
+	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/kk_downloader/pi1/class.tx_kkdownloader_addFieldsToFlexForm.php']);
 }
 
 
