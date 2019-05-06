@@ -10,7 +10,7 @@
  * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array (
+$EM_CONF[$_EXTKEY] = [
 	'title' => 'Simple download-system with counter and categories',
 	'description' => 'Download system with counter, simple category management, sorting criteria and page browsing in the LIST-view. Configuration via flexforms and HTML template. (example: http://kupix.de/downloadlist.html)',
 	'category' => 'plugin',
@@ -22,18 +22,18 @@ $EM_CONF[$_EXTKEY] = array (
 	'author' => 'Kurt Kunig - http://www.kupix.de',
 	'author_email' => 'kurt.kunig@kupix.de',
 	'author_company' => 'kupix webdesign, D-52428 Juelich - http://www.kupix.de',
-	'constraints' => 
-	array (
-		'depends' => 
-		array (
+	'constraints' =>
+	[
+		'depends' =>
+		[
 			'typo3' => '6.0.0-7.9.99',
-		),
-		'conflicts' => 
-		array (
-		),
-		'suggests' => 
-		array (
-		),
-	),
-);
+        ],
+		'conflicts' =>
+		[
+        ],
+		'suggests' =>
+		[
+        ],
+    ],
+];
 
