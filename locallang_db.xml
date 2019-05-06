@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'kk_imagedownloader'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tt_content.list_type_pi1">KK Downloader</label>
+			<label index="tx_kkdownloader_images">Download</label>
+			<label index="tx_kkdownloader_images.name">Download title</label>
+			<label index="tx_kkdownloader_images.image">File(s)</label>
+			<label index="tx_kkdownloader_images.imagepreview">Preview image (optional)</label>
+			<label index="tx_kkdownloader_images.description">Short description</label>
+			<label index="tx_kkdownloader_images.longdescription">Long description</label>
+			<label index="tx_kkdownloader_images.clicks">Clicks</label>
+			<label index="tx_kkdownloader_images.cat">Category</label>
+			<label index="tx_kkdownloader_images.imagedescription">Link description</label>
+			<label index="tx_kkdownloader_cat">Category</label>
+			<label index="tx_kkdownloader_cat.cat">Category</label>
+			<label index="tx_kkdownloader.filesize">Show filesize</label>
+			<label index="tx_kkdownloader.imagepreview">Image preview?</label>
+			<label index="tx_kkdownloader.results_at_a_time">No of items to show in one view before browsing</label>
+			<label index="tx_kkdownloader.showCRDate">Show creation date/time</label>
+			<label index="tx_kkdownloader.showEditDate">Show T3-object last edit date</label>
+			<label index="tx_kkdownloader.showFileMDate">Show file last edit date</label>
+			<label index="tx_kkdownloader.showDateLastDownload">Show date of last download</label>
+			<label index="tx_kkdownloader.showIPLastDownload">Show IP-address of last download</label>
+			<label index="tx_kkdownloader.showCRDate.nodate">No date/time</label>
+			<label index="tx_kkdownloader.showCRDate.date">Only date</label>
+			<label index="tx_kkdownloader.showCRDate.datetime">Date and Time</label>
+			<label index="tx_kkdownloader.showCats">Show Categories</label>
+			<label index="tx_kkdownloader_conf">Settings</label>
+			<label index="tx_kkdownloader_cat_all">All categories</label>
+			<label index="tx_kkdownloader.layout">Layout</label>
+			<label index="tx_kkdownloader.layout1">Image top</label>
+			<label index="tx_kkdownloader.layout2">Image right</label>
+			<label index="tx_kkdownloader.layout3">Image left</label>
+			<label index="tx_kkdownloader.layout4">Image bottom</label>
+			<label index="tx_kkdownloader.showclicks">Display counted clicks</label>
+			<label index="tx_kkdownloader.clicksno">No</label>
+			<label index="tx_kkdownloader.clicksyes">Yes</label>
+			<label index="tx_kkdownloader.what_to_display">View</label>
+			<label index="tx_kkdownloader.template_file">Template file</label>
+			<label index="tx_kkdownloader.orderby">Sort (only View = "LIST")</label>
+			<label index="tx_kkdownloader.orderbyTitle">by title</label>
+			<label index="tx_kkdownloader.orderbyFilename">by file-name</label>
+			<label index="tx_kkdownloader.orderbyCrDate">by creation date</label>
+			<label index="tx_kkdownloader.orderbyLastModified">by date last modified</label>
+			<label index="tx_kkdownloader.orderbyCategory">by category</label>
+			<label index="tx_kkdownloader.orderbyDateLastDownloaded">by date last downloaded</label>
+			<label index="tx_kkdownloader.orderbySorting">by sorting in sysfolder</label>
+			<label index="tx_kkdownloader.ascdesc">Ascending/Descending</label>
+			<label index="tx_kkdownloader.asc">Ascending</label>
+			<label index="tx_kkdownloader.desc">Descending</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="tt_content.list_type_pi1">KK Downloader</label>
+			<label index="tx_kkdownloader_images">Download</label>
+			<label index="tx_kkdownloader_images.name">Titel</label>
+			<label index="tx_kkdownloader_images.image">Download(s)</label>
+			<label index="tx_kkdownloader_images.imagepreview">Vorschaubild</label>
+			<label index="tx_kkdownloader_images.description">Kurzbeschreibung</label>
+			<label index="tx_kkdownloader_images.longdescription">Langbeschreibung</label>
+			<label index="tx_kkdownloader_images.clicks">Aufrufe</label>
+			<label index="tx_kkdownloader_images.cat">Kategorie</label>
+			<label index="tx_kkdownloader_images.imagedescription">Link name</label>
+			<label index="tx_kkdownloader_cat">Kategorie</label>
+			<label index="tx_kkdownloader.filesize">Dateigröße anzeigen</label>
+			<label index="tx_kkdownloader.imagepreview">Bild anzeigen?</label>
+			<label index="tx_kkdownloader.results_at_a_time">Maximale Anzahl Downloads auf einer Seite (bevor man blättern muss)</label>
+			<label index="tx_kkdownloader.showCRDate">Datum/Zeit der Erstellung anzeigen</label>
+			<label index="tx_kkdownloader.showEditDate">Änderungsdatum des Eintrags anzeigen</label>
+			<label index="tx_kkdownloader.showFileMDate">Änderungsdatum der Datei anzeigen</label>
+			<label index="tx_kkdownloader.showDateLastDownload">Datum des letzten Downloads anzeigen</label>
+			<label index="tx_kkdownloader.showIPLastDownload">IP-Adresse des letzten Downloads anzeigen</label>
+			<label index="tx_kkdownloader.showCRDate.nodate">Keine Anzeige</label>
+			<label index="tx_kkdownloader.showCRDate.date">Nur Datum</label>
+			<label index="tx_kkdownloader.showCRDate.datetime">Datum und Zeit</label>
+			<label index="tx_kkdownloader.showCats">Kategorien anzeigen</label>
+			<label index="tx_kkdownloader_conf">Einstellungen</label>
+			<label index="tx_kkdownloader_cat_all">Alle Kategorien</label>
+			<label index="tx_kkdownloader_cat.cat">Kategorie</label>
+			<label index="tx_kkdownloader.layout">Layout</label>
+			<label index="tx_kkdownloader.layout1">Bild oben</label>
+			<label index="tx_kkdownloader.layout2">Bild rechts</label>
+			<label index="tx_kkdownloader.layout3">Bild links</label>
+			<label index="tx_kkdownloader.layout4">Bild unten</label>
+			<label index="tx_kkdownloader.showclicks">Anzahl Downloads anzeigen</label>
+         <label index="tx_kkdownloader.clicksno">Nein</label>
+			<label index="tx_kkdownloader.clicksyes">Ja</label>
+			<label index="tx_kkdownloader.what_to_display">Ansicht</label>
+			<label index="tx_kkdownloader.template_file">Template Datei</label>
+			<label index="tx_kkdownloader.orderby">Sortierung nach (bei Ansicht "LIST")</label>
+			<label index="tx_kkdownloader.orderbyTitle">Titel</label>
+			<label index="tx_kkdownloader.orderbyFilename">Dateiname</label>
+			<label index="tx_kkdownloader.orderbyCrDate">Erstelldatum</label>
+			<label index="tx_kkdownloader.orderbyLastModified">Datum letzte Änderung</label>
+			<label index="tx_kkdownloader.orderbyCategory">nach Kategorieindex</label>
+			<label index="tx_kkdownloader.orderbyDateLastDownloaded">Datum letzter Download</label>
+			<label index="tx_kkdownloader.orderbySorting">nach Sortierung im Download-Ordner</label>
+			<label index="tx_kkdownloader.ascdesc">Sortierrichtung</label>
+			<label index="tx_kkdownloader.asc">aufsteigend</label>
+			<label index="tx_kkdownloader.desc">absteigend</label>
+		</languageKey>
+	</data>
+</T3locallang>

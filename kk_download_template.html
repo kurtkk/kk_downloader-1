@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <title></title>
+  </head>
+  <body>
+
+<!--
+possible MARKERs:
+dedicated text refering to the data-markers:
+###TEXT_TITLE###
+###TEXT_CATEGORIES###
+###TEXT_LINKS###
+###TEXT_SHORTDESCRIPTION###
+###TEXT_IMAGE###
+###TEXT_CLICKS###
+###TEXT_LASTDOWNLOAD###
+###TEXT_IPLASTDOWNLOAD###
+###TEXT_DATE###
+###TEXT_LASTEDIT###
+###TEXT_FILE###
+###TEXT_FILESIZE###
+###TEXT_FILEMDATE###
+
+generally you can use as many TEXT_-markers as you want. The system tries to satisfy all of them.
+the general contruction of the marker and the locallang.xml-text-indicator is like this:
+###TEXT_KEYWORD###  --> txtKEYWORD
+
+
+data-markers:
+###RESULT_COUNT###
+###LINK_PREV###
+###PAGES###
+###LINK_NEXT###
+
+###TITLE### = Title of download
+###CATEGORIES### = Category Name
+###LINKS### = All download links with filesize in brackets and download icon
+###SHORTDESCRIPTION### = Short description of doanload(s)
+###IMAGE### = Preview image
+###CLICKS### = Download counter
+###LASTDOWNLOAD### = Date and time of the last download
+###IPLASTDOWNLOAD###
+###DATE### = Creation date (and time)
+###LASTEDIT### = Last edit date
+
+// used in the additional template "###TEMPLATE_FILE_DETAIL###":
+###FILE### - file-name including the file-icon
+###FILESIZE### - filesize
+###FILEMDATE### - date of last modification of the file
+###ICON### = download icon
+
+###MORE### = Link to detailview
+
+
+-->
+
+
+<!-- BEGIN: Content of extension "kk_downloader", plugin "kk_downloader" -->
+<!-- ###TEMPLATE### begin -->
+<div class="kkdl_flexWrap">
+   <div class="result-count">###RESULT_COUNT###</div>
+   <div class="page-browser">###LINK_PREV### ###PAGES### ###LINK_NEXT###</div>
+   <!-- ###CONTENT### begin-->
+     <!-- ###LIST_ITEM### begin -->
+      <div class="kkdl_flex">
+         <h2 class="title">###TITLE###</h2>
+         <div class="category_class">###TEXT_CATEGORIES### ###CATEGORIES###</div>
+         <div class="kkdl_text">
+            <div class="links">###LINKS###</div>
+            <div class="description">###SHORTDESCRIPTION###</div>
+            ###MORE###
+         </div>
+         <div class="kkdl_image">###IMAGE###</div>
+         <div style="clear: both"></div>
+         <div class="clicks">###CLICKS### ###TEXT_CLICKS###</div>
+
+         <div class="datetime">###TEXT_LASTDOWNLOAD### ###LASTDOWNLOAD###</div>
+         <div class="description">###TEXT_IPLASTDOWNLOAD### ###IPLASTDOWNLOAD###</div>
+         <div class="datetime">###TEXT_LASTEDIT### ###LASTEDIT###</div>
+      </div>
+      <!-- ###LIST_ITEM### end -->
+   <!-- ###CONTENT### end-->
+   <div class="page-browser">###LINK_PREV### ###PAGES### ###LINK_NEXT###</div>
+</div>
+<!-- END Content of extension "kk_downloader", plugin "kk_downloader" -->
+<!-- ###TEMPLATE### end -->
+
+
+
+
+<!-- Single Template -->
+<!-- ###TEMPLATE_SINGLE### begin -->
+	<div class="kkdl_single">
+      <h2 class="title">###TITLE###</h2>
+      <div class="category_class">###CATEGORIES###</div>
+      <div class="kkdl_text">
+         <div class="links">###LINKS###</div>
+         <p class="bodytext">
+            <b>###TEXT_SHORTDESCRIPTION###:<br />###SHORTDESCRIPTION###</b>
+            <br />###DESCRIPTION###
+         </p>
+      </div>
+      <div class="kkdl_image">###IMAGE###</div>
+      <div style="clear: both"></div>
+      <div class="clicks">###CLICKS### ###TEXT_CLICKS### <span class="datetime">###TEXT_DATE### ###DATE###</span></div>
+      <div class="datetime">###TEXT_LASTDOWNLOAD###: ###LASTDOWNLOAD###</div>
+      <div class="description">###TEXT_IPLASTDOWNLOAD###: ###IPLASTDOWNLOAD###</div>
+      <div class="datetime">###TEXT_LASTEDIT###: ###LASTEDIT###</div>
+	</div>
+<!-- ###TEMPLATE_SINGLE### end -->
+<!-- Single Template -->
+
+
+<!-- N E W :   Template for detailled file information
+ ! This part will replace the marker ###LINKS### in the other templates above, if existing
+-->
+<!-- ###TEMPLATE_DETAIL### begin -->
+	 <!-- ###LINK_ITEM### begin -->
+        <div class="kkdl-details">
+            ###FILE### ###ICON###
+            <br />###TEXT_FILESIZE###: ###FILESIZE###
+            <br />###TEXT_FILEMDATE###: ###FILEMDATE###
+        </div>
+	 <!-- ###LINK_ITEM### end -->
+<!-- ###TEMPLATE_DETAIL### end -->
+
+
+</body>
+</html>

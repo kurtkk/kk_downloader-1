@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>
+         Language labels for plugin &quot;tx_kkdownloader_pi1&quot;
+         For linefeeds within the strings you have to put a "\n" in!
+      </description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+         <label index="txtTITLE">Title</label>
+         <label index="txtCATEGORIES">Category</label>
+         <label index="txtLINKS">Links</label>
+         <label index="txtSHORTDESCRIPTION">Short description</label>
+         <label index="txtDESCRIPTION">Description</label>
+         <label index="txtIMAGE">Download object</label>
+         <label index="txtCLICKS">downloads</label>
+         <label index="txtLASTDOWNLOAD">Date last download</label>
+         <label index="txtIPLASTDOWNLOAD">IP-address of last download</label>
+         <label index="txtDATE">since: </label>
+         <label index="txtLASTEDIT">This record was last edited at </label>
+         <label index="txtFILE">Download file name</label>
+         <label index="txtFILESIZE">Size of download-file</label>
+         <label index="txtFILEMDATE">File date last changed</label>
+         
+			<label index="errNoTemplate">Neither in typoscript nor in the flexform a correct HTML-template is allocated.</label>
+
+         <label index="download">Download</label>
+			<label index="downloads">Downloads</label>
+			<label index="novalue">No data, possibly missing ID!?</label>
+			<label index="notemplate">No HTML-template. Neither in the flexform nor in the template-setup!?</label>
+			<label index="bracketstart">(</label>
+			<label index="bracketend">)</label>
+			<label index="filesize">Filesize: </label>
+			<label index="fileMDate">File date: </label>
+			<label index="since">since: </label>
+			<label index="oclock">o´clock</label>
+			<label index="more">[more]</label>
+			<label index="lastedit">last edit: </label>
+			<label index="lastdownload">last downloaded: </label>
+			<label index="ip_lastdownload">IP-address of last download: </label>
+			<label index="category_text">Category: </label>
+			<label index="pi_list_browseresults_page">Page</label>
+			<label index="pi_list_browseresults_prev">Previous</label>
+			<label index="pi_list_browseresults_next">Next</label>
+			<label index="pi_list_browseresults_displays">Displaying results %s to %s out of %s</label>
+
+		</languageKey>
+		<languageKey index="de" type="array">
+         <label index="txtTITLE">Titel:</label>
+         <label index="txtCATEGORIES">Kategorie:</label>
+         <label index="txtLINKS">Links</label>
+         <label index="txtSHORTDESCRIPTION">Kurzbeschreibung:</label>
+         <label index="txtDESCRIPTION">Beschreibung:</label>
+         <label index="txtIMAGE">Download-Objekt</label>
+         <label index="txtCLICKS">Downloads</label>
+         <label index="txtLASTDOWNLOAD">zuletzt herunter geladen:</label>
+         <label index="txtIPLASTDOWNLOAD">IP-Adresse des letzten Downloads:</label>
+         <label index="txtDATE"> seit </label>
+         <label index="txtLASTEDIT">Datum der letzten Veränderung: </label>
+         <label index="txtFILE">Dateiname: </label>
+         <label index="txtFILESIZE">Dateigröße: </label>
+         <label index="txtFILEMDATE">Dateidatum, letzte Änderung: </label>
+			<label index="errNoTemplate">Weder im Typoscript noch in der Flexform wurde eine korrekte HTML-Vorlage eingebunden.</label>
+			<label index="download">Download</label>
+			<label index="downloads">Downloads</label>
+			<label index="novalue">Keine Daten vorhanden, es wurde wahrscheinlich keine ID übergeben!?</label>
+			<label index="notemplate">Sie haben weder in der Flexform noch im Setup eine HTML-Schablone zugewiesen!?</label>
+			<label index="bracketstart">(</label>
+			<label index="bracketend">)</label>
+			<label index="filesize">Dateigröße: </label>
+			<label index="fileMDate">Dateidatum: </label>
+			<label index="since">seit: </label>
+			<label index="oclock">Uhr</label>
+			<label index="more">[mehr]</label>
+			<label index="lastedit">Letzte Änderung: </label>
+			<label index="lastdownload">Letzter Download: </label>
+			<label index="ip_lastdownload">IP-Adresse des Letzten Downloads: </label>
+			<label index="category_text">Kategorie: </label>
+			<label index="pi_list_browseresults_page">Seite</label>
+			<label index="pi_list_browseresults_prev">zurück</label>
+			<label index="pi_list_browseresults_next">weiter</label>
+			<label index="pi_list_browseresults_displays">Download-Objekt %s bis %s von %s</label>
+
+		</languageKey>
+	</data>
+</T3locallang>
