@@ -2,7 +2,7 @@
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 include_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY).'pi1/class.tx_kkdownloader_addFieldsToFlexForm.php');
 
-$TCA["tx_kkdownloader_images"] = array (
+$GLOBALS['TCA']["tx_kkdownloader_images"] = array (
 	"ctrl" => array (
 		'title'     => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images',
 		'label'     => 'name',
@@ -26,7 +26,7 @@ $TCA["tx_kkdownloader_images"] = array (
 	)
 );
 
-$TCA["tx_kkdownloader_cat"] = array (
+$GLOBALS['TCA']["tx_kkdownloader_cat"] = array (
 	"ctrl" => array (
 		'title'     => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_cat',
 		'label'     => 'cat',
@@ -83,8 +83,8 @@ $TCA["tx_kkdownloader_cat"] = array (
 
 
 // you add pi_flexform to be renderd when your plugin is shown
-$TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1']='layout,select_key';
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi1']='pi_flexform';                   // new!
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1']='layout,select_key';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi1']='pi_flexform';                   // new!
 
 // t3lib_extMgm::addPlugin(array('LLL:EXT:kk_downloader/locallang_db.xml:tt_content.list_type_pi1', $_EXTKEY.'_pi1'),'list_type');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(

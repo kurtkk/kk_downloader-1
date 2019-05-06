@@ -1,12 +1,12 @@
 <?php
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
-$TCA["tx_kkdownloader_images"] = array (
-	"ctrl" => $TCA["tx_kkdownloader_images"]["ctrl"],
+$GLOBALS['TCA']["tx_kkdownloader_images"] = array (
+	"ctrl" => $GLOBALS['TCA']["tx_kkdownloader_images"]["ctrl"],
 	"interface" => array (
 		"showRecordFieldList" => "sys_language_uid,l18n_parent,l18n_diffsource,hidden,name,image,description,longdescription,clicks,cat"
 	),
-	"feInterface" => $TCA["tx_kkdownloader_images"]["feInterface"],
+	"feInterface" => $GLOBALS['TCA']["tx_kkdownloader_images"]["feInterface"],
 	"columns" => array (
 		'sys_language_uid' => array (
 			'exclude' => 1,
@@ -161,12 +161,12 @@ $TCA["tx_kkdownloader_images"] = array (
 
 
 
-$TCA["tx_kkdownloader_cat"] = array (
-	"ctrl" => $TCA["tx_kkdownloader_cat"]["ctrl"],
+$GLOBALS['TCA']["tx_kkdownloader_cat"] = array (
+	"ctrl" => $GLOBALS['TCA']["tx_kkdownloader_cat"]["ctrl"],
 	"interface" => array (
 		"showRecordFieldList" => "sys_language_uid,l18n_parent,l18n_diffsource,hidden,cat"
 	),
-	"feInterface" => $TCA["tx_kkdownloader_cat"]["feInterface"],
+	"feInterface" => $GLOBALS['TCA']["tx_kkdownloader_cat"]["feInterface"],
 	"columns" => array (
 		'sys_language_uid' => array (
 			'exclude' => 1,
