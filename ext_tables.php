@@ -2,55 +2,6 @@
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 include_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY).'pi1/class.tx_kkdownloader_addFieldsToFlexForm.php');
 
-$GLOBALS['TCA']["tx_kkdownloader_images"] = [
-	"ctrl" => [
-		'title'     => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images',
-		'label'     => 'name',
-		'tstamp'    => 'tstamp',
-		'crdate'    => 'crdate',
-		'cruser_id' => 'cruser_id',
-		'sortby' => 'sorting',
-		'languageField'            => 'sys_language_uid',
-		'transOrigPointerField'    => 'l18n_parent',
-		'transOrigDiffSourceField' => 'l18n_diffsource',
-		'default_sortby' => "ORDER BY name",
-		'delete' => 'deleted',
-		'enablecolumns' => [
-			'disabled' => 'hidden',
-        ],
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY).'tca.php',
-		'iconfile'          => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY).'icon_tx_kkdownloader_images.gif',
-    ],
-	"feInterface" => [
-		"fe_admin_fieldList" => "sys_language_uid, l18n_parent, l18n_diffsource, hidden, name, image, imagepreview, downloaddescription, description, longdescription, clicks, cat",
-    ]
-];
-
-$GLOBALS['TCA']["tx_kkdownloader_cat"] = [
-	"ctrl" => [
-		'title'     => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_cat',
-		'label'     => 'cat',
-		'tstamp'    => 'tstamp',
-		'crdate'    => 'crdate',
-		'cruser_id' => 'cruser_id',
-		'languageField'            => 'sys_language_uid',
-		'transOrigPointerField'    => 'l18n_parent',
-		'transOrigDiffSourceField' => 'l18n_diffsource',
-		'default_sortby' => "ORDER BY cat ASC",
-		'delete' => 'deleted',
-		'enablecolumns' => [
-			'disabled' => 'hidden',
-        ],
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY).'tca.php',
-		'iconfile'          => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY).'icon_tx_kkdownloader_cat.gif',
-    ],
-	"feInterface" => [
-		"fe_admin_fieldList" => "sys_language_uid, l18n_parent, l18n_diffsource, hidden, cat",
-    ]
-];
-
-//t3lib_div::loadTCA('tt_content');
-
 // insert CSS file
 // t3lib_extMgm::addStaticFile($_EXTKEY,'static/css/','downloader');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
