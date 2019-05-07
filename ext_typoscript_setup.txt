@@ -19,19 +19,19 @@ plugin.tx_kkdownloader_pi1 {
   # distance around image
   imageDistance = 5
   # image settings
-  image{
-      file.maxW = 80
-      imageLinkWrap = 1
-      imageLinkWrap {
-        enable = 1
-        bodyTag = <BODY bgColor=white>
-        wrap = <A href="javascript:close();"> | </A>
-        width = 400m
-        height = 400
-        JSwindow = 1
-        JSwindow.newWindow = 1
-        JSwindow.expand = 17,20
-      }
+  image {
+    file.maxW = 80
+    imageLinkWrap = 1
+    imageLinkWrap {
+      enable = 1
+      bodyTag = <BODY bgColor=white>
+      wrap = <A href="javascript:close();"> | </A>
+      width = 400m
+      height = 400
+      JSwindow = 1
+      JSwindow.newWindow = 1
+      JSwindow.expand = 17,20
+    }
   }
   # date and time by Kurt Kupix
   # displayCreationDate (0 = no date & time, 1 = only date, 2 = date & time)

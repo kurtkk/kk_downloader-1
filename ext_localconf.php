@@ -13,8 +13,8 @@ call_user_func(function() {
         '
 # Setting kk_downloader plugin TypoScript
 ' . trim('
-plugin.kkdownloader_pi1 = USER
-plugin.kkdownloader_pi1.userFunc = JWeiland\KkDownloader\Plugin\KkDownloader->main
+plugin.tx_kkdownloader_pi1 = USER
+plugin.tx_kkdownloader_pi1.userFunc = JWeiland\KkDownloader\Plugin\KkDownloader->main
 '
         )
     );
@@ -24,7 +24,7 @@ plugin.kkdownloader_pi1.userFunc = JWeiland\KkDownloader\Plugin\KkDownloader->ma
         'setup',
         '
 # Setting kk_downloader plugin TypoScript
-tt_content.list.20.kk_downloader_pi1 = < plugin.kkdownloader_pi1
+tt_content.list.20.kkdownloader_pi1 = < plugin.tx_kkdownloader_pi1
 '
         ,
         'defaultContentRendering'
