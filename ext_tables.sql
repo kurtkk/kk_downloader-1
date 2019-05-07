@@ -19,16 +19,14 @@ CREATE TABLE tx_kkdownloader_images (
 	description text NOT NULL,
 	longdescription text NOT NULL,
 	downloaddescription text NOT NULL,
-	clicks tinytext NOT NULL,
+	clicks int(10) DEFAULT '0' NOT NULL,
 	cat tinytext NOT NULL,
 	last_downloaded int(11) DEFAULT '0' NOT NULL,
-	ip_last_download tinytext NOT NULL,
+	ip_last_download varchar(45) DEFAULT '' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
-
-
 
 #
 # Table structure for table 'tx_kkdownloader_cat'

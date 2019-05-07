@@ -1,0 +1,61 @@
+{namespace events2=JWeiland\Events2\ViewHelpers}
+
+<div class="kkdl_flexWrap">
+	<div class="result-count">{resultCount}</div>
+	<div class="page-browser">{linkPrev} {pages} {linkNext}</div>
+	<f:for each="{downloads}" as="download">
+		<div class="kkdl_flex">
+			<h2 class="title">{download.name}</h2>
+			<div class="category_class">
+				<f:if condition="{download.categories}">
+					{f:translate(key: 'categories')}: {download.categories}
+				</f:if>
+			</div>
+			<div class="kkdl_text">
+				<div class="links">{download.fileItems}</div>
+				<div class="description">
+					{download.description -> f:format.crop(maxCharacters: 10000, respectWordBoundaries: 1)->f:format.nl2br()}
+				</div>
+				<f:link.page pageUid="{pidOfDetailPage}" target="_top" additionalParams="{tx_kkdownloader_pi1: {uid: download.uid}}">{f:translate(key: 'more')}</f:link.page>
+			</div>
+			<f:if condition="{settings.showImagePreview}">
+				<div class="kkdl_image">{download.previewImage->f:format.raw()}</div>
+			</f:if>
+			<div style="clear: both"></div>
+
+			<f:if condition="{settings.showDownloadsCount}">
+				<div class="clicks">{download.clicks} {f:translate(key: 'clicks')}</div>
+			</f:if>
+
+			<f:if condition="{download.last_download}">
+				<div class="datetime">
+					{f:translate(key: 'lastDownload')}
+					{download.last_download->f:format.date(format: 'd.m.Y H:i')}
+				</div>
+			</f:if>
+
+			<f:if condition="{settings.showIPLastDownload} && {download.ip_last_download}">
+				<div class="description">{f:translate(key: 'ipLastDownload')} {download.ip_last_download}</div>
+			</f:if>
+
+			<f:if condition="{settings.showEditDate}">
+				<div class="datetime">
+					{f:translate(key: 'lastEdit')}
+					<f:switch expression="{settings.creationDateFormat}">
+						<f:case value="1">{download.tstamp->f:format.date(format: 'd.m.Y')}</f:case>
+						<f:case value="2">{download.tstamp->f:format.date(format: 'd.m.Y H:i')}</f:case>
+					</f:switch>
+				</div>
+			</f:if>
+		</div>
+	</f:for>
+	<div class="page-browser">{linkPrev} {pages} {linkNext}</div>
+</div>
+
+<f:section name="renderFileInformation">
+	<div class="kkdl-details">
+		###FILE### ###ICON###
+		<br />{f:translate(key: 'filesize')}: ###FILESIZE###
+		<br />{f:translate(key: 'fileMDate')}: ###FILEMDATE###
+	</div>
+</f:section>
