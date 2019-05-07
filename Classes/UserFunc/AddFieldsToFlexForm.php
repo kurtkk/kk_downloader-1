@@ -15,6 +15,7 @@ namespace JWeiland\KkDownloader\UserFunc;
  */
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -52,7 +53,12 @@ class AddFieldsToFlexForm
         $statement = $queryBuilder
             ->select('uid', 'cat')
             ->from('tx_kkdownloader_cat')
-            ->where()
+            ->andWhere(
+                $queryBuilder->expr()->in(
+                    'sys_language_uid',
+                    $queryBuilder->createNamedParameter([-1, 0], Connection::PARAM_INT_ARRAY)
+                )
+            )
             ->orderBy('cat', 'ASC')
             ->execute();
 
