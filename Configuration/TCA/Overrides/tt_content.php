@@ -13,7 +13,7 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['kkdownloader
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
     [
-        'LLL:EXT:kk_downloader/locallang_db.xml:tt_content.list_type_pi1',
+        'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tt_content.list_type_pi1',
         'kkdownloader_pi1'
     ],
     'list_type'

@@ -1,7 +1,7 @@
 <?php
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images',
+        'title' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_images',
         'label' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -80,7 +80,7 @@ return [
         ],
         'name' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.name',
+            'label' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_images.name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -88,7 +88,7 @@ return [
         ],
         'cat' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.cat',
+            'label' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_images.cat',
             'config' => [
                 'type' => 'select',
                 'renderType' 	=> 'selectSingleBox',
@@ -102,7 +102,7 @@ return [
         ],
         'image' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.image',
+            'label' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_images.image',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'file',
@@ -118,7 +118,7 @@ return [
         ],
         'imagepreview' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.imagepreview',
+            'label' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_images.imagepreview',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'file',
@@ -133,7 +133,7 @@ return [
         ],
         'downloaddescription' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.imagedescription',
+            'label' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_images.imagedescription',
             'config' => [
                 'type' => 'text',
                 'cols' => 30,
@@ -142,7 +142,7 @@ return [
         ],
         'description' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.description',
+            'label' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_images.description',
             'config' => [
                 'type' => 'text',
                 'cols' => 30,
@@ -151,7 +151,7 @@ return [
         ],
         'longdescription' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.longdescription',
+            'label' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_images.longdescription',
             'config' => [
                 'type' => 'text',
                 'cols' => 30,
@@ -173,7 +173,7 @@ return [
         ],
         'clicks' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_images.clicks',
+            'label' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_images.clicks',
             'config' => [
                 'type' => 'input',
                 'size' => 30,

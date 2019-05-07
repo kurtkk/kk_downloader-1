@@ -1,7 +1,7 @@
 <?php
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_cat',
+        'title' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_cat',
         'label' => 'cat',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -79,10 +79,10 @@ return [
         ],
         'cat' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_cat.cat',
+            'label' => 'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tx_kkdownloader_cat.cat',
             'config' => [
                 'type' => 'input',
-                'size' => '30',
+                'size' => 30,
             ]
         ],
     ],

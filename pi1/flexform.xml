@@ -2,17 +2,17 @@
 <meta>
 <langDisable>1</langDisable>
 </meta>
-  <sheets>
-    <sDEF>
-      <ROOT>
-        <TCEforms>
-          <sheetTitle>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_conf</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-        <el>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader_conf</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
 					<what_to_display>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.what_to_display</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.what_to_display</label>
 							<config>
 								<type>select</type>
 								<items type="array">
@@ -35,27 +35,27 @@
 					</what_to_display>
 
 					<dynField>
-					  <TCEforms>
-					   <label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader_cat.cat</label>
-					   <config>
-					    <type>select</type>
-					     <itemsProcFunc>tx_kkdownloader_addFieldsToFlexForm->addFields</itemsProcFunc>
-					   </config>
-					   </TCEforms>
+						<TCEforms>
+						 <label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader_cat.cat</label>
+						 <config>
+							<type>select</type>
+							 <itemsProcFunc>tx_kkdownloader_addFieldsToFlexForm->addFields</itemsProcFunc>
+						 </config>
+						 </TCEforms>
 					</dynField>
 
-               <showCats>
+					<showCats>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showCats</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showCats</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 								<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksno</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksyes</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 								</items>
@@ -65,62 +65,62 @@
 						</TCEforms>
 					</showCats>
 
-               <orderby>
+					<orderby>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.orderby</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.orderby</label>
 							<config>
 								<type>select</type>
 								<items type="array">
-   								<numIndex index="1" type="array">
-   										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.orderbyTitle</numIndex>
-   										<numIndex index="1">name</numIndex>
-   								</numIndex>
-   								<numIndex index="2" type="array">
-   										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.orderbyFilename</numIndex>
-   										<numIndex index="1">image</numIndex>
-   								</numIndex>
-   								<numIndex index="3" type="array">
-   									<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.orderbyCrDate</numIndex>
-   									<numIndex index="1">crdate</numIndex>
-   								</numIndex>
-   								<numIndex index="4" type="array">
-   									<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.orderbyLastModified</numIndex>
-   									<numIndex index="1">tstamp</numIndex>
-   								</numIndex>
-   								<numIndex index="5" type="array">
-   									<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.orderbyCategory</numIndex>
-   									<numIndex index="1">cat</numIndex>
-   								</numIndex>
-   								<numIndex index="6" type="array">
-   									<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.orderbyDateLastDownloaded</numIndex>
-   									<numIndex index="1">last_downloaded</numIndex>
-   								</numIndex>
-   								<numIndex index="7" type="array">
-   									<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.orderbySorting</numIndex>
-   									<numIndex index="1">sorting</numIndex>
-   								</numIndex>
-   								</items>
+									<numIndex index="1" type="array">
+											<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.orderbyTitle</numIndex>
+											<numIndex index="1">name</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+											<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.orderbyFilename</numIndex>
+											<numIndex index="1">image</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.orderbyCrDate</numIndex>
+										<numIndex index="1">crdate</numIndex>
+									</numIndex>
+									<numIndex index="4" type="array">
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.orderbyLastModified</numIndex>
+										<numIndex index="1">tstamp</numIndex>
+									</numIndex>
+									<numIndex index="5" type="array">
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.orderbyCategory</numIndex>
+										<numIndex index="1">cat</numIndex>
+									</numIndex>
+									<numIndex index="6" type="array">
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.orderbyDateLastDownloaded</numIndex>
+										<numIndex index="1">last_downloaded</numIndex>
+									</numIndex>
+									<numIndex index="7" type="array">
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.orderbySorting</numIndex>
+										<numIndex index="1">sorting</numIndex>
+									</numIndex>
+									</items>
 								<maxitems>1</maxitems>
 								<size>1</size>
 							</config>
 						</TCEforms>
 					</orderby>
 
-               <ascdesc>
+							 <ascdesc>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.ascdesc</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.ascdesc</label>
 							<config>
 								<type>select</type>
 								<items type="array">
-   								<numIndex index="1" type="array">
-   										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.asc</numIndex>
-   										<numIndex index="1">ASC</numIndex>
-   								</numIndex>
-   								<numIndex index="2" type="array">
-   										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.desc</numIndex>
-   										<numIndex index="1">DESC</numIndex>
-   								</numIndex>
-   							</items>
+									<numIndex index="1" type="array">
+											<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.asc</numIndex>
+											<numIndex index="1">ASC</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+											<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.desc</numIndex>
+											<numIndex index="1">DESC</numIndex>
+									</numIndex>
+								</items>
 								<maxitems>1</maxitems>
 								<size>1</size>
 							</config>
@@ -129,7 +129,7 @@
 
 					<results_at_a_time>
 						<TCEforms>
-                     <label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.results_at_a_time</label>
+										 <label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.results_at_a_time</label>
 							<config>
 								<type>input</type>
 								<size>3</size>
@@ -137,18 +137,18 @@
 						</TCEforms>
 					</results_at_a_time>
 
-               <imagepreview>
+							 <imagepreview>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.imagepreview</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.imagepreview</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 								<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksno</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksyes</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 								</items>
@@ -158,18 +158,18 @@
 						</TCEforms>
 					</imagepreview>
 
-               <filesize>
+					<filesize>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.filesize</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.filesize</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 								<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksno</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksyes</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 								</items>
@@ -178,23 +178,23 @@
 							</config>
 						</TCEforms>
 					</filesize>
-					
+
 					<showCRDate>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showCRDate</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showCRDate</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 								<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showCRDate.nodate</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showCRDate.nodate</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showCRDate.date</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showCRDate.date</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showCRDate.datetime</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showCRDate.datetime</numIndex>
 										<numIndex index="1">2</numIndex>
 									</numIndex>
 								</items>
@@ -204,22 +204,22 @@
 						</TCEforms>
 					</showCRDate>
 
-               <showFileMDate>
+					<showFileMDate>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showFileMDate</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showFileMDate</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 								<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showCRDate.nodate</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showCRDate.nodate</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showCRDate.date</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showCRDate.date</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showCRDate.datetime</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showCRDate.datetime</numIndex>
 										<numIndex index="1">2</numIndex>
 									</numIndex>
 								</items>
@@ -229,18 +229,18 @@
 						</TCEforms>
 					</showFileMDate>
 
-               <showEditDate>
+							 <showEditDate>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showEditDate</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showEditDate</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 								<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksno</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksyes</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 								</items>
@@ -249,19 +249,19 @@
 							</config>
 						</TCEforms>
 					</showEditDate>
-					
+
 					<downloads>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showclicks</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showclicks</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 								<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksno</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksyes</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 								</items>
@@ -271,18 +271,18 @@
 						</TCEforms>
 					</downloads>
 
-               <showDateLastDownload>
+							 <showDateLastDownload>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showDateLastDownload</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showDateLastDownload</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 								<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksno</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksyes</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 								</items>
@@ -292,18 +292,18 @@
 						</TCEforms>
 					</showDateLastDownload>
 
-               <showIPLastDownload>
+							 <showIPLastDownload>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.showIPLastDownload</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showIPLastDownload</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 								<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksno</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.clicksyes</numIndex>
+										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 								</items>
@@ -315,22 +315,21 @@
 
 					<template_file>
 						<TCEforms>
-							<label>LLL:EXT:kk_downloader/locallang_db.xml:tx_kkdownloader.template_file</label>
+							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.template_file</label>
 							<config>
 								<type>group</type>
 								<internal_type>file</internal_type>
 								<allowed>tmpl,html,htm</allowed>
 								<max_size>100</max_size>
-<!--								<uploadfolder>uploads/tx_kkdownloader</uploadfolder>  -->
 								<maxitems>1</maxitems>
 								<size>1</size>
 								<selectedListStyle>Width:275px</selectedListStyle>
 							</config>
 						</TCEforms>
 					</template_file>
-        </el>
-      </ROOT>
-    </sDEF>
-  </sheets>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
 </T3DataStructure>
 
