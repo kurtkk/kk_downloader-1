@@ -8,7 +8,7 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['kkdownloader
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     'kkdownloader_pi1',
-    'FILE:EXT:kkdownloader/pi1/flexform.xml'
+    'FILE:EXT:kk_downloader/Configuration/FlexForms/KkDownloader.xml'
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
@@ -16,5 +16,6 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['kkdownloader
         'LLL:EXT:kk_downloader/Resources/Private/Language/locallang_db.xlf:tt_content.list_type_pi1',
         'kkdownloader_pi1'
     ],
-    'list_type'
+    'list_type',
+    'kk_downloader'
 );

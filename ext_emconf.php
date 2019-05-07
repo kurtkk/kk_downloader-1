@@ -11,29 +11,24 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = [
-	'title' => 'Simple download-system with counter and categories',
-	'description' => 'Download system with counter, simple category management, sorting criteria and page browsing in the LIST-view. Configuration via flexforms and HTML template. (example: http://kupix.de/downloadlist.html)',
-	'category' => 'plugin',
-	'version' => '3.0.1',
-	'state' => 'stable',
-	'uploadfolder' => true,
-	'createDirs' => '',
-	'clearcacheonload' => false,
-	'author' => 'Kurt Kunig - http://www.kupix.de',
-	'author_email' => 'kurt.kunig@kupix.de',
-	'author_company' => 'kupix webdesign, D-52428 Juelich - http://www.kupix.de',
-	'constraints' =>
-	[
-		'depends' =>
-		[
-			'typo3' => '6.0.0-7.9.99',
+    'title' => 'Simple download-system with counter and categories',
+    'description' => 'Download system with counter, simple category management, sorting criteria and page browsing in the LIST-view. Configuration via flexforms and HTML template. (example: http://kupix.de/downloadlist.html)',
+    'category' => 'plugin',
+    'version' => '4.0.0',
+    'state' => 'stable',
+    'uploadfolder' => true,
+    'createDirs' => '',
+    'clearcacheonload' => false,
+    'author' => 'Stefan Froemken',
+    'author_email' => 'projects@jweiland.net',
+    'author_company' => 'jweiland.net',
+    'constraints' => [
+        'depends' => [
+            'typo3' => '8.7.14-9.5.99',
         ],
-		'conflicts' =>
-		[
+        'conflicts' => [
         ],
-		'suggests' =>
-		[
+        'suggests' => [
         ],
     ],
 ];
-

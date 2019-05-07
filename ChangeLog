@@ -2,7 +2,7 @@
    * in class.tx_kkdownloader_addFieldsToFlexForm.php ergänzt: Kategorien alphabetisch sortiert!
      Danke für den Hinweis an Michael Lausberg, FH Aachen
    * Liste der Kategorien ebenfalls sortiert nach Kategorienamen anstatt Erstelldatum
-	 
+
 2016-01-25  Kurt Kunig <kurt.kunig@kupix.de>
    * Ready for TYPO3 Version 6 up to 7.9.99
 
@@ -18,22 +18,22 @@
 	* make the ext. running under TYPO3 V4.6 (replaced deprecated old functions)
 
 2011-09-13 Kurt Kunig <kurt.kunig@kupix.de>
-	* correction of the mimetype function (wrong allocation)  
+	* correction of the mimetype function (wrong allocation)
 
 2011-05-24 Kurt Kunig <kurt.kunig@kupix.de>
 	* there was no correct where function in categories if a cat-set is set (e.g. "2,1")
-	* Thanks to Michael Hilgers <mhil@mhil.at> for the new statement: [$where2 = " AND (find_in_set('$cat',tx_kkdownloader_images.cat )) >0";] in line 253	
+	* Thanks to Michael Hilgers <mhil@mhil.at> for the new statement: [$where2 = " AND (find_in_set('$cat',tx_kkdownloader_images.cat )) >0";] in line 253
 
 2011-05-19 Kurt Kunig <kurt.kunig@kupix.de>
 	* there was no correct select in categories if more than 9 cats exist
-	* Thanks to Michael Hilgers <mhil@mhil.at> for this correction: [$where2 = " AND ($cat IN (tx_kkdownloader_images.cat))";] in line 251	
+	* Thanks to Michael Hilgers <mhil@mhil.at> for this correction: [$where2 = " AND ($cat IN (tx_kkdownloader_images.cat))";] in line 251
 
 2011-05-03 Kurt Kunig <kurt.kunig@kupix.de>
 	* marker ###FILESIZE### was shown instead of nothing if filesize was not desired in the flexform
 
 2010-12-20 Kurt Kunig <kurt.kunig@kupix.de>
 	* download-objects can now be sorted in the item-storage-area with the well-known "up"- and "down"-buttons
-	* additional sort-select in the plugin for items order in the FE: "by sorting in sysfolder"	
+	* additional sort-select in the plugin for items order in the FE: "by sorting in sysfolder"
 
 2010-02-24 Kurt Kunig <kurt.kunig@kupix.de>
 	* download-objects can now be stored in a normal page, not only in a sysfolder (that's simpler for e.g. 1 DL-file)
