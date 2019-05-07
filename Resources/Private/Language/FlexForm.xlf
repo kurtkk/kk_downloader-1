@@ -63,12 +63,6 @@
 			<trans-unit id="tx_kkdownloader.showclicks">
 				<source>Display counted clicks</source>
 			</trans-unit>
-			<trans-unit id="tx_kkdownloader.clicksno">
-				<source>No</source>
-			</trans-unit>
-			<trans-unit id="tx_kkdownloader.clicksyes">
-				<source>Yes</source>
-			</trans-unit>
 			<trans-unit id="tx_kkdownloader.what_to_display">
 				<source>View</source>
 			</trans-unit>

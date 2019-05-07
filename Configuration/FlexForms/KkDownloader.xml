@@ -48,19 +48,8 @@
 						<TCEforms>
 							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showCats</label>
 							<config>
-								<type>select</type>
-								<items type="array">
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-								</items>
-								<maxitems>1</maxitems>
-								<size>1</size>
+								<type>check</type>
+								<default>0</default>
 							</config>
 						</TCEforms>
 					</showCats>
@@ -141,19 +130,8 @@
 						<TCEforms>
 							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.imagepreview</label>
 							<config>
-								<type>select</type>
-								<items type="array">
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-								</items>
-								<maxitems>1</maxitems>
-								<size>1</size>
+								<type>check</type>
+								<default>0</default>
 							</config>
 						</TCEforms>
 					</imagepreview>
@@ -162,19 +140,8 @@
 						<TCEforms>
 							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.filesize</label>
 							<config>
-								<type>select</type>
-								<items type="array">
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-								</items>
-								<maxitems>1</maxitems>
-								<size>1</size>
+								<type>check</type>
+								<default>0</default>
 							</config>
 						</TCEforms>
 					</filesize>
@@ -233,19 +200,8 @@
 						<TCEforms>
 							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showEditDate</label>
 							<config>
-								<type>select</type>
-								<items type="array">
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-								</items>
-								<maxitems>1</maxitems>
-								<size>1</size>
+								<type>check</type>
+								<default>0</default>
 							</config>
 						</TCEforms>
 					</showEditDate>
@@ -254,19 +210,8 @@
 						<TCEforms>
 							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showclicks</label>
 							<config>
-								<type>select</type>
-								<items type="array">
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-								</items>
-								<maxitems>1</maxitems>
-								<size>1</size>
+								<type>check</type>
+								<default>0</default>
 							</config>
 						</TCEforms>
 					</downloads>
@@ -275,19 +220,8 @@
 						<TCEforms>
 							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showDateLastDownload</label>
 							<config>
-								<type>select</type>
-								<items type="array">
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-								</items>
-								<maxitems>1</maxitems>
-								<size>1</size>
+								<type>check</type>
+								<default>0</default>
 							</config>
 						</TCEforms>
 					</showDateLastDownload>
@@ -296,19 +230,8 @@
 						<TCEforms>
 							<label>LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.showIPLastDownload</label>
 							<config>
-								<type>select</type>
-								<items type="array">
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksno</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:kk_downloader/Resources/Private/Language/FlexForm.xlf:tx_kkdownloader.clicksyes</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-								</items>
-								<maxitems>1</maxitems>
-								<size>1</size>
+								<type>check</type>
+								<default>0</default>
 							</config>
 						</TCEforms>
 					</showIPLastDownload>

@@ -83,14 +83,6 @@
 				<source>Display counted clicks</source>
 				<target>Anzahl Downloads anzeigen</target>
 			</trans-unit>
-			<trans-unit id="tx_kkdownloader.clicksno">
-				<source>No</source>
-				<target>Nein</target>
-			</trans-unit>
-			<trans-unit id="tx_kkdownloader.clicksyes">
-				<source>Yes</source>
-				<target>Ja</target>
-			</trans-unit>
 			<trans-unit id="tx_kkdownloader.what_to_display">
 				<source>View</source>
 				<target>Ansicht</target>
