@@ -24,6 +24,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
 use TYPO3\CMS\Extbase\Mvc\Web\Request;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Frontend\Page\PageRepository;
@@ -68,11 +69,8 @@ class KkDownloader extends AbstractPlugin
 
     public $langArr;
 
-    public $filesize;
-    public $showFileMDate;
     public $showCats;
     public $template;
-    public $debug = false;
     public $internal = [];
 
     /**
@@ -94,6 +92,11 @@ class KkDownloader extends AbstractPlugin
      */
     protected $uidOfDownload = 0;
 
+    /**
+     * Contains settings of FlexForm
+     *
+     * @var array
+     */
     protected $settings = [];
 
     protected $languageUid = 0;
@@ -451,6 +454,7 @@ class KkDownloader extends AbstractPlugin
         $images = GeneralUtility::trimExplode(',', $download['image'], true);
         $description = GeneralUtility::trimExplode('<br />', nl2br($download['downloaddescription']), true);
         $i = 0;
+        $content = '';
         foreach ($images as $image) {
             $fileinfo = GeneralUtility::split_fileref($image);
             // no description given
@@ -467,8 +471,8 @@ class KkDownloader extends AbstractPlugin
                         $fileName = trim($fileinfo['fileext']);
                         break;
                 }
-                // description given
             } else {
+                // description given
                 $fileName = trim($description[$i]);
             }
 
@@ -490,7 +494,6 @@ class KkDownloader extends AbstractPlugin
                 }
             }
 
-
             // render the LINK-Part:
             $content .= '<div class="linkOutput"><div class="dl-link">' . $strDLI . '&nbsp;';
             $content .= $this->pi_linkTP($fileName, $urlParameters= ['download' => $image, 'did' => $uid]);
@@ -499,12 +502,12 @@ class KkDownloader extends AbstractPlugin
             // add the filesize block, if desired
             if ($this->settings['showFileSize']) {
                 $downloadfile = $this->filebasepath.$image;
-                $valfilesize = filesize($downloadfile);
+                $fileSize = filesize($downloadfile);
                 $decimals = 2;
-                if ($valfilesize < 1024) {
+                if ($fileSize < 1024) {
                     $decimals = 0;
                 }
-                $valfilesize = $this->format_size($valfilesize, $decimals);
+                $formattedFileSize = $this->format_size($fileSize, $decimals);
                 $fsc = trim($this->conf['filesizeClass']);
                 if (empty($fsc)) {
                     $filesizedivB = '<div>';
@@ -513,13 +516,19 @@ class KkDownloader extends AbstractPlugin
                     $filesizedivB = '<div class="'.$fsc.'">';
                     $filesizedivE = '</div>';
                 }
-                $content .= ' ' . $filesizedivB.$this->pi_getLL('bracketstart').$this->pi_getLL('filesize').$valfilesize.$this->pi_getLL('bracketend').$filesizedivE;
+                $content .= sprintf(
+                    ' %s(%s%s)%s',
+                    $filesizedivB,
+                    LocalizationUtility::translate('filesize', 'kkDownloader'),
+                    $formattedFileSize,
+                    $filesizedivE
+                );
             }
 
             // add the file date+time block, if desired
             if ($this->settings['showFileMDate']) {
                 $downloadfile = $this->filebasepath . $image;
-                $filemtime = filemtime($downloadfile);
+                $fileModificationTime = filemtime($downloadfile);
                 if ($this->settings['showFileMDate'] == '1') {
                     $dtf = $this->conf['dateformat'];
                 } else {
@@ -528,17 +537,22 @@ class KkDownloader extends AbstractPlugin
                 if (empty($dtf)) {
                     $dtf = 'd.m.Y H:i';
                 }
-                $strFilemtime = date($dtf, $filemtime);
+                $formattedFileDate = date($dtf, $fileModificationTime);
                 $mdsc = trim($this->conf['fileMDateClass']);
-                if ($this->debug > 1) print '<p style="color:#f0f;"><br>$mdsc = "' . $mdsc . '" <br>/$downloadfile = "' . $downloadfile . '" <br>/$filemtime ="' . $filemtime . '" <br>$strFilemtime = "' . $strFilemtime . '"</p>';
                 if (empty($mdsc)) {
                     $fileMDatedivB = '<div>';
                     $fileMDatedivE = '</div>';
                 } else {
-                    $fileMDatedivB = '<div class="'.$mdsc.'">';
+                    $fileMDatedivB = '<div class="' . $mdsc . '">';
                     $fileMDatedivE = '</div>';
                 }
-                $content .= ' '.$fileMDatedivB.$this->pi_getLL('fileMDate').$strFilemtime.$filesizedivE;
+                $content .= sprintf(
+                    ' %s%s%s%s',
+                    $fileMDatedivB,
+                    LocalizationUtility::translate('fileMDate', 'kkDownloader'),
+                    $formattedFileDate,
+                    $fileMDatedivE
+                );
             }
             $content .= '</div>';
             $i++;
@@ -565,13 +579,13 @@ class KkDownloader extends AbstractPlugin
     }
 
     /**
-     * Format filesize
+     * Format FileSize
      *
      * @param int $size: size of file in bytes
      * @param int $round: filesize: true/false
-     * @return float return formatted filesize
+     * @return string return formatted FileSize
      */
-    protected function format_size(int $size, int $round = 0)
+    protected function format_size(int $size, int $round = 0): string
     {
         //Size must be bytes!
         $sizes = [' Bytes', ' kB', ' MB', ' GB', ' TB', ' PB', ' EB', ' ZB', ' YB'];
@@ -643,7 +657,10 @@ class KkDownloader extends AbstractPlugin
             $next = ($beginAt + $this->internal['results_at_a_time'] > $amountOfDownloads) ? $amountOfDownloads - $this->internal['results_at_a_time']:$beginAt + $this->internal['results_at_a_time'];
             $next = intval($next / $this->internal['results_at_a_time']);
             $params = ['pointer' => $next];
-            $next_link = $this->pi_linkTP_keepPIvars($this->pi_getLL('pi_list_browseresults_next', 'Next >'), $params);
+            $next_link = $this->pi_linkTP_keepPIvars(
+                LocalizationUtility::translate('pi_list_browseresults_next', 'kkDownloader'),
+                $params
+            );
             $view->assign('linkNext', $this->cObj->stdWrap($next_link, $this->conf['pageBrowser.']['next_stdWrap.']));
         }
 
@@ -652,7 +669,10 @@ class KkDownloader extends AbstractPlugin
             $prev = ($beginAt - $this->internal['results_at_a_time'] < 0)?0:$beginAt - $this->internal['results_at_a_time'];
             $prev = intval($prev / $this->internal['results_at_a_time']);
             $params = ['pointer' => $prev];
-            $prev_link = $this->pi_linkTP_keepPIvars($this->pi_getLL('pi_list_browseresults_prev', '< Previous'), $params);
+            $prev_link = $this->pi_linkTP_keepPIvars(
+                LocalizationUtility::translate('pi_list_browseresults_prev', 'kkDownloader'),
+                $params
+            );
             $view->assign('linkPrev', $this->cObj->stdWrap($prev_link, $this->conf['pageBrowser.']['previous_stdWrap.']));
         }
         $pages = ceil($amountOfDownloads / $this->internal['results_at_a_time']);
@@ -678,11 +698,20 @@ class KkDownloader extends AbstractPlugin
         $lastPage = ($lastPage + $addLast) <= $pages ? ($lastPage + $addLast) : $pages;
         $pages = '';
         for ($i = $firstPage; $i < $lastPage; $i++) {
+            $item = (string)($i + 1);
+            if ($this->conf['pageBrowser.']['showPBrowserText']) {
+                $item = sprintf(
+                    '%s %s',
+                    LocalizationUtility::translate(
+                        'pi_list_browseresults_page',
+                        'kkDownloader'
+                    ),
+                    $item
+                );
+            }
             if (($beginAt >= $i * $this->internal['results_at_a_time']) && ($beginAt < $i * $this->internal['results_at_a_time'] + $this->internal['results_at_a_time'])) {
-                $item = ($this->conf['pageBrowser.']['showPBrowserText']?$this->pi_getLL('pi_list_browseresults_page', 'Page'):'') . (string)($i + 1);
                 $pages .= $this->cObj->stdWrap($item, $this->conf['pageBrowser.']['activepage_stdWrap.']) . ' ';
             } else {
-                $item = ($this->conf['pageBrowser.']['showPBrowserText']?$this->pi_getLL('pi_list_browseresults_page', 'Page'):'') . (string)($i + 1);
                 $params = ['pointer' => $i];
                 $link = $this->pi_linkTP_keepPIvars($this->cObj->stdWrap($item, $this->conf['pageBrowser.']['pagelink_stdWrap.']) , $params) . ' ';
                 $pages .= $this->cObj->stdWrap($link, $this->conf['pageBrowser.']['page_stdWrap.']);
@@ -693,26 +722,19 @@ class KkDownloader extends AbstractPlugin
         $end_at = ($beginAt + $this->internal['results_at_a_time']);
 
         if ($this->conf['pageBrowser.']['showResultCount']) {
-            $view->assign(
-                'resultCount',
-                (
-                    $this->internal['res_count'] ?
-                        sprintf(
-                            str_replace(
-                                '###SPAN_BEGIN###',
-                                '<span' . $this->pi_classParam('browsebox-strong') . '>',
-                                $this->pi_getLL(
-                                    'pi_list_browseresults_displays',
-                                    'Displaying results ###SPAN_BEGIN###%s to %s</span> out of ###SPAN_BEGIN###%s</span>'
-                                )
-                            ),
-                            $this->internal['res_count'] > 0 ? ($beginAt+1) : 0,
-                            min([$this->internal['res_count'],$end_at]),
-                            $this->internal['res_count']
-                        ) :
-                        $this->pi_getLL('pi_list_browseresults_noResults','Sorry, no items were found.')
-                )
-            );
+            if ($this->internal['res_count']) {
+                $startingSpanTag = '<span' . $this->pi_classParam('browsebox-strong') . '>';
+                $closingSpanTag = '</span>';
+                $pageResultCount = sprintf(
+                    LocalizationUtility::translate('pi_list_browseresults_displays', 'kkDownloader'),
+                    $startingSpanTag . ($this->internal['res_count'] > 0 ? ($beginAt + 1) : 0) . $closingSpanTag,
+                    $startingSpanTag . (min([$this->internal['res_count'], $end_at])) . $closingSpanTag,
+                    $startingSpanTag . $this->internal['res_count'] . $closingSpanTag
+                );
+            } else {
+                $pageResultCount = LocalizationUtility::translate('pi_list_browseresults_noResults', 'kkDownloader');
+            }
+            $view->assign('resultCount', $pageResultCount);
         }
     }
 

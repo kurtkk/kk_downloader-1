@@ -47,7 +47,7 @@
 
 <f:section name="renderListView">
 	<div class="kkdl_flexWrap">
-		<div class="result-count">{resultCount}</div>
+		<div class="result-count">{resultCount->f:format.raw()}</div>
 		<f:render section="renderPageBrowser" arguments="{_all}" />
 		<f:for each="{downloads}" as="download">
 			<div class="kkdl_flex">

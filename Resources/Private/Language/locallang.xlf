@@ -78,6 +78,9 @@
 			<trans-unit id="pi_list_browseresults_displays">
 				<source>Displaying results %s to %s out of %s</source>
 			</trans-unit>
+			<trans-unit id="pi_list_browseresults_noResults">
+				<source>Sorry, no items were found.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

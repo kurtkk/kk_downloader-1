@@ -103,6 +103,10 @@
 				<source>Displaying results %s to %s out of %s</source>
 				<target>Download-Objekt %s bis %s von %s</target>
 			</trans-unit>
+			<trans-unit id="pi_list_browseresults_noResults">
+				<source>Sorry, no items were found.</source>
+				<target>Es wurden keine Einträge gefunden</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
