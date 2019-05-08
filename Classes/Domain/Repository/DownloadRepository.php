@@ -116,6 +116,27 @@ class DownloadRepository
         return $downloads;
     }
 
+    public function updateImageRecordAfterDownload(int $uid)
+    {
+        $download = $this->getDownloadByUid($uid);
+
+        $amountOfDownloads = (int)$download['clicks'] + 1;
+
+        $queryBuilder = $this->getConnectionPool()->getQueryBuilderForTable($this->tableName);
+        $queryBuilder
+            ->update($this->tableName)
+            ->set('tx_kkdownloader_images.clicks', $amountOfDownloads)
+            ->set('tx_kkdownloader_images.last_downloaded', date('U'))
+            ->set('tx_kkdownloader_images.ip_last_download', $_SERVER['REMOTE_ADDR'])
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'uid',
+                    $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT)
+                )
+            )
+            ->execute();
+    }
+
     /**
      * Get TYPO3s Connection Pool
      *

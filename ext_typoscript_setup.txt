@@ -1,7 +1,7 @@
 # Bilder
 plugin.tx_kkdownloader_pi1 {
   # template
-  templateFile = EXT:kk_downloader/Resources/Private/Templates/ListTemplate.html
+  templateFile = EXT:kk_downloader/Resources/Private/Templates/MainTemplate.html
   singlePID = 1
   # download description (1 = filename.fileextension, 2 = filename, 3 = fileextension)
   linkdescription = 1

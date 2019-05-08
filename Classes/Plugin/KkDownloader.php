@@ -64,7 +64,7 @@ class KkDownloader extends AbstractPlugin
 
     public $pi_checkCHash = true;
     public $filebasepath = 'uploads/tx_kkdownloader/';
-    public $defaultTemplate = 'EXT:kk_downloader/Resources/Private/Templates/ListTemplate.html';
+    public $defaultTemplate = 'EXT:kk_downloader/Resources/Private/Templates/MainTemplate.html';
 
     public $langArr;
 
@@ -159,13 +159,25 @@ class KkDownloader extends AbstractPlugin
         $this->internal['maxPages'] = $this->conf['pageBrowser.']['maxPages'] > 0 ? intval($this->conf['pageBrowser.']['maxPages']) : 10;
 
         $view = $this->getView();
+        $view->setTemplatePathAndFilename($templateFile);
         if ($this->settings['whatToDisplay'] === 'SINGLE') {
             $download = $this->downloadRepository->getDownloadByUid($this->uidOfDownload);
             $download = $this->languageOverlay($download, 'tx_kkdownloader_images');
-            $downloads = [$download];
-        } else {
-            $view->setTemplatePathAndFilename($templateFile);
 
+            if ($this->settings['showCats']) {
+                $download['categories'] = $this->completeCATs($download['cat']);
+            }
+            if ($this->settings['showImagePreview']) {
+                $download['previewImage'] = $this->createPreviewImage($download);
+            }
+            $download['fileItems'] = $this->generateDownloadLinks(
+                (int)$download['uid'],
+                (int)$this->conf['linkdescription'],
+                $this->conf['downloadIcon']
+            );
+
+            $view->assign('download', $download);
+        } else {
             $storageFoldersForDownloads = $this->cObj->data['pages'];
             if (!$storageFoldersForDownloads) {
                 $storageFoldersForDownloads = $defaultDownloadPid;
@@ -189,7 +201,7 @@ class KkDownloader extends AbstractPlugin
                 if ($this->settings['showImagePreview']) {
                     $download['previewImage'] = $this->createPreviewImage($download);
                 }
-                $download['fileItems'] = $this->generateFileItems(
+                $download['fileItems'] = $this->generateDownloadLinks(
                     (int)$download['uid'],
                     (int)$this->conf['linkdescription'],
                     $this->conf['downloadIcon']
@@ -211,10 +223,6 @@ class KkDownloader extends AbstractPlugin
                 if ($this->conf['pageBrowser.']['showResultCount']) {
                     $this->addPageBrowserSettingsToView($view);
                 }
-
-                $markerArray['###LINK_PREV###'] = '';
-                $markerArray['###PAGES###'] = '';
-                $markerArray['###LINK_NEXT###'] = '';
             }
         }
 
@@ -314,8 +322,11 @@ class KkDownloader extends AbstractPlugin
         $settings['showFileSize'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'filesize', 'sDEF');
         $settings['showImagePreview'] = (bool)$this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'imagepreview', 'sDEF');
         $settings['showDownloadsCount'] = (bool)$this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'downloads', 'sDEF');
-        $settings['creationDateFormat'] = trim($this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'showCRDate', 'sDEF'));
-        $settings['creationDateFormat'] = $settings['creationDateFormat'] ?: $this->conf['displayCreationDate'];
+
+        // @ToDo: needed for SINGLE view
+        $settings['creationDateType'] = trim($this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'showCRDate', 'sDEF'));
+        $settings['creationDateType'] = $settings['creationDateType'] ?: $this->conf['displayCreationDate'];
+
         $settings['showEditDate'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'showEditDate', 'sDEF');
         $settings['showDateLastDownload'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'showDateLastDownload', 'sDEF');
         $settings['showIPLastDownload'] = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'showIPLastDownload', 'sDEF');
@@ -384,7 +395,7 @@ class KkDownloader extends AbstractPlugin
             $ma['###ICON###'] = $strDLI;
 
             // add the filesize block, if desired
-            if ($this->filesize) {
+            if ($this->settings['showFileSize']) {
                 $downloadfile = $this->filebasepath.$image;
                 // $filesize = filesize($downloadfile);
                 $valfilesize = filesize($downloadfile);
@@ -400,13 +411,14 @@ class KkDownloader extends AbstractPlugin
                 $ma['###FILESIZE###'] = '';
             }
 
-            if ($this->showFileMDate && $this->showFileMDate != '0') {
+            if ($this->settings['showFileMDate']) {
                 $downloadfile = $this->filebasepath.$image;
                 $filemtime = filemtime($downloadfile);
                 // displayCreationDate (0 = no date & time, 1 = only date, 2 = date & time)
-                $dtf = $this->conf['datetimeformat'];
-                if ($this->showFileMDate == '1') {
+                if ($this->settings['showFileMDate'] == '1') {
                     $dtf = $this->conf['dateformat'];
+                } else {
+                    $dtf = $this->conf['datetimeformat'];
                 }
                 if (empty($dtf)) {
                     $dtf = 'd.m.Y H:i';
@@ -423,6 +435,116 @@ class KkDownloader extends AbstractPlugin
         }
 
         return $ci;
+    }
+
+    /**
+     * Generates the download links
+     *
+     * @param int $uid: The download uid
+     * @param int $downloaddescription:1 = filename.fileextension, 2 = filename, 3 = fileextension
+     * @param string $downloadIcon: which downloadicon
+     * @return string The generated links
+     */
+    protected function generateDownloadLinks(int $uid, int $downloaddescription = 1, string $downloadIcon = '')
+    {
+        $download = $this->downloadRepository->getDownloadByUid($uid);
+        $images = GeneralUtility::trimExplode(',', $download['image'], true);
+        $description = GeneralUtility::trimExplode('<br />', nl2br($download['downloaddescription']), true);
+        $i = 0;
+        foreach ($images as $image) {
+            $fileinfo = GeneralUtility::split_fileref($image);
+            // no description given
+            if (empty($row['downloaddescription'])) {
+                // check typoscript settings
+                switch($downloaddescription){
+                    case 1:
+                        $fileName = trim($fileinfo['filebody']) . '.' . trim($fileinfo['fileext']);
+                        break;
+                    case 2:
+                        $fileName = trim($fileinfo['filebody']);
+                        break;
+                    case 3:
+                        $fileName = trim($fileinfo['fileext']);
+                        break;
+                }
+                // description given
+            } else {
+                $fileName = trim($description[$i]);
+            }
+
+            // Render Downloadicon
+            $strDLI = '';
+            if (!empty($downloadIcon)) {
+                if (strlen(strrchr($downloadIcon, '/')) == 1) {     	// so the last letter is a Slash!
+                    // now we take the corresponding GIFs for the different file-extensions,
+                    // normally in folder "typo3/gfx/fileicons/"
+                    // if file icon exist
+                    if (file_exists($downloadIcon.trim($fileinfo['fileext'].'.gif'))) {
+                        $fi = trim($fileinfo['fileext']);
+                        $strDLI = '<img src="'.$downloadIcon.$fi.'.gif" width="18" height="16"   alt="'.$fi.'-File-Icon" />&nbsp;';
+                    } else {
+                        $strDLI = '<img src="'.$this->conf["missingDownloadIcon"].'" alt="allgemeine Datei-Ikone" />&nbsp;';
+                    }
+                } else {
+                    $strDLI = '<img src="'.$downloadIcon.'" alt="File-Icon" />';
+                }
+            }
+
+
+            // render the LINK-Part:
+            $content .= '<div class="linkOutput"><div class="dl-link">' . $strDLI . '&nbsp;';
+            $content .= $this->pi_linkTP($fileName, $urlParameters= ['download' => $image, 'did' => $uid]);
+            $content .= '</div>';
+
+            // add the filesize block, if desired
+            if ($this->settings['showFileSize']) {
+                $downloadfile = $this->filebasepath.$image;
+                $valfilesize = filesize($downloadfile);
+                $decimals = 2;
+                if ($valfilesize < 1024) {
+                    $decimals = 0;
+                }
+                $valfilesize = $this->format_size($valfilesize, $decimals);
+                $fsc = trim($this->conf['filesizeClass']);
+                if (empty($fsc)) {
+                    $filesizedivB = '<div>';
+                    $filesizedivE = '</div>';
+                } else {
+                    $filesizedivB = '<div class="'.$fsc.'">';
+                    $filesizedivE = '</div>';
+                }
+                $content .= ' ' . $filesizedivB.$this->pi_getLL('bracketstart').$this->pi_getLL('filesize').$valfilesize.$this->pi_getLL('bracketend').$filesizedivE;
+            }
+
+            // add the file date+time block, if desired
+            if ($this->settings['showFileMDate']) {
+                $downloadfile = $this->filebasepath . $image;
+                $filemtime = filemtime($downloadfile);
+                if ($this->settings['showFileMDate'] == '1') {
+                    $dtf = $this->conf['dateformat'];
+                } else {
+                    $dtf = $this->conf['datetimeformat'];
+                }
+                if (empty($dtf)) {
+                    $dtf = 'd.m.Y H:i';
+                }
+                $strFilemtime = date($dtf, $filemtime);
+                $mdsc = trim($this->conf['fileMDateClass']);
+                if ($this->debug > 1) print '<p style="color:#f0f;"><br>$mdsc = "' . $mdsc . '" <br>/$downloadfile = "' . $downloadfile . '" <br>/$filemtime ="' . $filemtime . '" <br>$strFilemtime = "' . $strFilemtime . '"</p>';
+                if (empty($mdsc)) {
+                    $fileMDatedivB = '<div>';
+                    $fileMDatedivE = '</div>';
+                } else {
+                    $fileMDatedivB = '<div class="'.$mdsc.'">';
+                    $fileMDatedivE = '</div>';
+                }
+                $content .= ' '.$fileMDatedivB.$this->pi_getLL('fileMDate').$strFilemtime.$filesizedivE;
+            }
+            $content .= '</div>';
+            $i++;
+        }
+
+        return $content;
     }
 
     /**
@@ -500,18 +622,7 @@ class KkDownloader extends AbstractPlugin
         header('Content-Length: ' . $valfilesize);
         readfile($downloadfile);
 
-        $GLOBALS['TYPO3_DB']->sql_query("UPDATE tx_kkdownloader_images
-									SET tx_kkdownloader_images.clicks = tx_kkdownloader_images.clicks + 1
-									WHERE tx_kkdownloader_images.uid = $uid");
-        $z = date("U");
-        $GLOBALS['TYPO3_DB']->sql_query("UPDATE tx_kkdownloader_images
-									SET tx_kkdownloader_images.last_downloaded = $z
-									WHERE tx_kkdownloader_images.uid = $uid");
-
-        $z1 = $_SERVER['REMOTE_ADDR'];
-        $GLOBALS['TYPO3_DB']->sql_query("UPDATE tx_kkdownloader_images
-									SET tx_kkdownloader_images.ip_last_download = '$z1'
-									WHERE tx_kkdownloader_images.uid = $uid");
+        $this->downloadRepository->updateImageRecordAfterDownload($uid);
 
         exit;
     }
