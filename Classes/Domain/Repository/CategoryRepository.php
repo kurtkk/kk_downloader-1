@@ -33,6 +33,7 @@ class CategoryRepository
     /**
      * Returns all categories by UIDs
      *
+     * @param string $commaSeparatedCategories
      * @return array
      */
     public function getCategoriesByUids(string $commaSeparatedCategories): array
