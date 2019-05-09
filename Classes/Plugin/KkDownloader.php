@@ -17,17 +17,13 @@ namespace JWeiland\KkDownloader\Plugin;
 use JWeiland\KkDownloader\Domain\Repository\CategoryRepository;
 use JWeiland\KkDownloader\Domain\Repository\DownloadRepository;
 use JWeiland\KkDownloader\Domain\Repository\LanguageRepository;
-use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Service\MarkerBasedTemplateService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
-use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
-use TYPO3\CMS\Extbase\Mvc\Web\Request;
-use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Mvc\Exception\InvalidExtensionNameException;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
@@ -342,146 +338,38 @@ class KkDownloader extends AbstractPlugin
     }
 
     /**
-     * Generates the separate items for the download links
-     *
-     * @param int $uid: The download uid
-     * @param int $downloaddescription: 1 = filename.fileextension, 2 = filename, 3 = fileextension
-     * @return string FileItems rendered as HTML
-     */
-    protected function generateFileItems(int $uid, int $downloaddescription = 1)
-    {
-        $download = $this->downloadRepository->getDownloadByUid($uid);
-        $ci = '';
-        $images = GeneralUtility::trimExplode(',', $download['image'], true);
-        $description = GeneralUtility::trimExplode('<br />', nl2br($download['downloaddescription']), true);
-        $i = 0;
-
-        foreach ($images as $image) {
-            $fileInfo = GeneralUtility::split_fileref($image);
-
-            // no description given
-            if (empty($download['downloaddescription'])) {
-                // check typoscript settings
-                switch ($downloaddescription) {
-                    case 1:
-                        $fileName = trim($fileInfo['filebody']).'.'.trim($fileInfo['fileext']);
-                        break;
-                    case 2:
-                        $fileName = trim($fileInfo['filebody']);
-                        break;
-                    case 3:
-                        $fileName = trim($fileInfo['fileext']);
-                        break;
-                }
-            } else {
-                $fileName = trim($description[$i]);
-            }
-
-            // Render DownloadIcon
-            if (empty($this->conf['downloadIcon'])) {
-                // If DownloadIcon is not configured, we try to get Icon by file-ext
-                try {
-                    $fileObject = ResourceFactory::getInstance()->retrieveFileOrFolderObject(
-                        $this->filebasepath . $image
-                    );
-                    $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
-                    $fileExtIcon = $iconFactory->getIconForResource($fileObject, Icon::SIZE_SMALL)->render();
-                } catch (\Exception $e) {
-                    $fileExtIcon = sprintf(
-                        '<img src="%s" alt="allgemeine Datei-Ikone" />&nbsp;',
-                        PathUtility::getAbsoluteWebPath(
-                            GeneralUtility::getFileAbsFileName($this->conf['missingDownloadIcon'])
-                        )
-                    );
-                }
-            } else {
-                $fileExtIcon = sprintf(
-                    '<img src="%s" alt="File-Icon" />&nbsp;',
-                    PathUtility::getAbsoluteWebPath(
-                        GeneralUtility::getFileAbsFileName($this->conf['downloadIcon'])
-                    )
-                );
-            }
-
-            $ma['###FILE###'] = $this->pi_linkTP($fileName, $urlParameters= ['download' => $image, 'did' => $uid]);
-            $ma['###ICON###'] = $fileExtIcon;
-
-            // add the filesize block, if desired
-            if ($this->settings['showFileSize']) {
-                $downloadfile = $this->filebasepath.$image;
-                // $filesize = filesize($downloadfile);
-                $valfilesize = filesize($downloadfile);
-                $decimals = 2;
-                if ($valfilesize < 1024) {
-                    $decimals = 0;
-                }
-                $valfilesize = $this->format_size($valfilesize, $decimals);
-                $fsc = trim($this->conf['filesizeClass']);
-
-                $ma['###FILESIZE###'] = $valfilesize;
-            } else {
-                $ma['###FILESIZE###'] = '';
-            }
-
-            if ($this->settings['showFileMDate']) {
-                $downloadfile = $this->filebasepath.$image;
-                $filemtime = filemtime($downloadfile);
-                // displayCreationDate (0 = no date & time, 1 = only date, 2 = date & time)
-                if ($this->settings['showFileMDate'] == '1') {
-                    $dtf = $this->conf['dateformat'];
-                } else {
-                    $dtf = $this->conf['datetimeformat'];
-                }
-                if (empty($dtf)) {
-                    $dtf = 'd.m.Y H:i';
-                }
-
-                $ma['###FILEMDATE###'] = date($dtf, $filemtime);
-                if ($ma['###FILEMDATE###'] == '###FILEMDATE###') {
-                    $ma['###FILEMDATE###'] = '?';
-                }
-            }
-
-            $ci .= $this->templateService->substituteMarkerArrayCached($this->template['template_filedetail'], $ma);
-            $i++;
-        }
-
-        return $ci;
-    }
-
-    /**
      * Generates the download links
      *
      * @param int $uid: The download uid
-     * @param int $downloaddescription:1 = filename.fileextension, 2 = filename, 3 = fileextension
+     * @param int $downloadDescriptionType:1 = filename.fileextension, 2 = filename, 3 = fileextension
      * @return string The generated links
      */
-    protected function generateDownloadLinks(int $uid, int $downloaddescription = 1)
+    protected function generateDownloadLinks(int $uid, int $downloadDescriptionType = 1)
     {
         $download = $this->downloadRepository->getDownloadByUid($uid);
         $images = GeneralUtility::trimExplode(',', $download['image'], true);
-        $description = GeneralUtility::trimExplode('<br />', nl2br($download['downloaddescription']), true);
-        $i = 0;
+        $downloadDescriptions = GeneralUtility::trimExplode(
+            '<br />',
+            nl2br($download['downloaddescription']),
+            true
+        );
         $content = '';
-        foreach ($images as $image) {
-            $fileinfo = GeneralUtility::split_fileref($image);
-            // no description given
+        foreach ($images as $key => $image) {
+            $fileInfo = GeneralUtility::split_fileref($image);
+            $fileDescription = $downloadDescriptions[$key];
             if (empty($row['downloaddescription'])) {
-                // check typoscript settings
-                switch($downloaddescription){
+                // Set fileDescription as configured by Type
+                switch ($downloadDescriptionType) {
                     case 1:
-                        $fileName = trim($fileinfo['filebody']) . '.' . trim($fileinfo['fileext']);
+                        $fileDescription = $fileInfo['filebody'] . '.' . $fileInfo['fileext'];
                         break;
                     case 2:
-                        $fileName = trim($fileinfo['filebody']);
+                        $fileDescription = $fileInfo['filebody'];
                         break;
                     case 3:
-                        $fileName = trim($fileinfo['fileext']);
+                        $fileDescription = $fileInfo['fileext'];
                         break;
                 }
-            } else {
-                // description given
-                $fileName = trim($description[$i]);
             }
 
             // Render DownloadIcon
@@ -512,7 +400,7 @@ class KkDownloader extends AbstractPlugin
 
             // render the LINK-Part:
             $content .= '<div class="linkOutput"><div class="dl-link">' . $fileExtIcon . '&nbsp;';
-            $content .= $this->pi_linkTP($fileName, $urlParameters= ['download' => $image, 'did' => $uid]);
+            $content .= $this->pi_linkTP($fileDescription, $urlParameters= ['download' => $image, 'did' => $uid]);
             $content .= '</div>';
 
             // add the filesize block, if desired
@@ -571,7 +459,6 @@ class KkDownloader extends AbstractPlugin
                 );
             }
             $content .= '</div>';
-            $i++;
         }
 
         return $content;
@@ -756,28 +643,19 @@ class KkDownloader extends AbstractPlugin
 
     protected function getView()
     {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-
-        // Request object is needed for f:translate()
-        $request = $objectManager->get(Request::class);
-        $request->setControllerExtensionName('KkDownloader');
-
-        $controllerContext = $objectManager->get(ControllerContext::class);
-        $controllerContext->setRequest($request);
-        $controllerContext->setUriBuilder(
-            $objectManager->get(UriBuilder::class)
-        );
-
         $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setControllerContext($controllerContext);
+
+        try {
+            $view->getRequest()->setControllerExtensionName('kkDownloader');
+        } catch (InvalidExtensionNameException $e) {
+        }
 
         return $view;
     }
 
     protected function languageOverlay(array $row, string $tableName)
     {
-        $context = GeneralUtility::makeInstance(Context::class);
-        $pageRepository = GeneralUtility::makeInstance(PageRepository::class, $context);
+        $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
         if (
             isset($GLOBALS['TCA'][$tableName]['ctrl']['transOrigPointerField'])
             && $row[$GLOBALS['TCA'][$tableName]['ctrl']['transOrigPointerField']] > 0
