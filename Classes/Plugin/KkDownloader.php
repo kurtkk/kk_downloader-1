@@ -18,8 +18,12 @@ use JWeiland\KkDownloader\Domain\Repository\CategoryRepository;
 use JWeiland\KkDownloader\Domain\Repository\DownloadRepository;
 use JWeiland\KkDownloader\Domain\Repository\LanguageRepository;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Service\MarkerBasedTemplateService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
 use TYPO3\CMS\Extbase\Mvc\Web\Request;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
@@ -175,8 +179,7 @@ class KkDownloader extends AbstractPlugin
             }
             $download['fileItems'] = $this->generateDownloadLinks(
                 (int)$download['uid'],
-                (int)$this->conf['linkdescription'],
-                $this->conf['downloadIcon']
+                (int)$this->conf['linkdescription']
             );
 
             $view->assign('download', $download);
@@ -206,8 +209,7 @@ class KkDownloader extends AbstractPlugin
                 }
                 $download['fileItems'] = $this->generateDownloadLinks(
                     (int)$download['uid'],
-                    (int)$this->conf['linkdescription'],
-                    $this->conf['downloadIcon']
+                    (int)$this->conf['linkdescription']
                 );
             }
 
@@ -344,10 +346,9 @@ class KkDownloader extends AbstractPlugin
      *
      * @param int $uid: The download uid
      * @param int $downloaddescription: 1 = filename.fileextension, 2 = filename, 3 = fileextension
-     * @param string $downloadIcon: which downloadicon
      * @return string FileItems rendered as HTML
      */
-    protected function generateFileItems(int $uid, int $downloaddescription = 1, string $downloadIcon = '')
+    protected function generateFileItems(int $uid, int $downloaddescription = 1)
     {
         $download = $this->downloadRepository->getDownloadByUid($uid);
         $ci = '';
@@ -376,26 +377,34 @@ class KkDownloader extends AbstractPlugin
                 $fileName = trim($description[$i]);
             }
 
-            // Render Downloadicon
-            $strDLI = '';
-            if (!empty($downloadIcon)) {
-                if (strlen(strrchr($downloadIcon, '/')) == 1) {     // so the last letter is a Slash!
-                    // now we take the corresponding GIFs for the different file-extensions,
-                    // normally in folder 'typo3/gfx/fileicons/'
-                    // if file icon exist
-                    if (file_exists($downloadIcon . trim($fileInfo['fileext'] . '.gif'))) {
-                        $fi = trim($fileInfo['fileext']);
-                        $strDLI = '<img src="' . $downloadIcon . $fi . '.gif" width="18" height="16" alt="' . $fi . '-File-Icon" />&nbsp;';
-                    } else {
-                        $strDLI = '<img src="' . $this->conf["missingDownloadIcon"] . '" alt="allgemeine Datei-Ikone" />&nbsp;';
-                    }
-                } else {
-                    $strDLI = '<img src="' . $downloadIcon . '" alt="File-Icon" />';
+            // Render DownloadIcon
+            if (empty($this->conf['downloadIcon'])) {
+                // If DownloadIcon is not configured, we try to get Icon by file-ext
+                try {
+                    $fileObject = ResourceFactory::getInstance()->retrieveFileOrFolderObject(
+                        $this->filebasepath . $image
+                    );
+                    $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+                    $fileExtIcon = $iconFactory->getIconForResource($fileObject, Icon::SIZE_SMALL)->render();
+                } catch (\Exception $e) {
+                    $fileExtIcon = sprintf(
+                        '<img src="%s" alt="allgemeine Datei-Ikone" />&nbsp;',
+                        PathUtility::getAbsoluteWebPath(
+                            GeneralUtility::getFileAbsFileName($this->conf['missingDownloadIcon'])
+                        )
+                    );
                 }
+            } else {
+                $fileExtIcon = sprintf(
+                    '<img src="%s" alt="File-Icon" />&nbsp;',
+                    PathUtility::getAbsoluteWebPath(
+                        GeneralUtility::getFileAbsFileName($this->conf['downloadIcon'])
+                    )
+                );
             }
 
             $ma['###FILE###'] = $this->pi_linkTP($fileName, $urlParameters= ['download' => $image, 'did' => $uid]);
-            $ma['###ICON###'] = $strDLI;
+            $ma['###ICON###'] = $fileExtIcon;
 
             // add the filesize block, if desired
             if ($this->settings['showFileSize']) {
@@ -445,10 +454,9 @@ class KkDownloader extends AbstractPlugin
      *
      * @param int $uid: The download uid
      * @param int $downloaddescription:1 = filename.fileextension, 2 = filename, 3 = fileextension
-     * @param string $downloadIcon: which downloadicon
      * @return string The generated links
      */
-    protected function generateDownloadLinks(int $uid, int $downloaddescription = 1, string $downloadIcon = '')
+    protected function generateDownloadLinks(int $uid, int $downloaddescription = 1)
     {
         $download = $this->downloadRepository->getDownloadByUid($uid);
         $images = GeneralUtility::trimExplode(',', $download['image'], true);
@@ -476,26 +484,34 @@ class KkDownloader extends AbstractPlugin
                 $fileName = trim($description[$i]);
             }
 
-            // Render Downloadicon
-            $strDLI = '';
-            if (!empty($downloadIcon)) {
-                if (strlen(strrchr($downloadIcon, '/')) == 1) {     	// so the last letter is a Slash!
-                    // now we take the corresponding GIFs for the different file-extensions,
-                    // normally in folder "typo3/gfx/fileicons/"
-                    // if file icon exist
-                    if (file_exists($downloadIcon.trim($fileinfo['fileext'].'.gif'))) {
-                        $fi = trim($fileinfo['fileext']);
-                        $strDLI = '<img src="'.$downloadIcon.$fi.'.gif" width="18" height="16"   alt="'.$fi.'-File-Icon" />&nbsp;';
-                    } else {
-                        $strDLI = '<img src="'.$this->conf["missingDownloadIcon"].'" alt="allgemeine Datei-Ikone" />&nbsp;';
-                    }
-                } else {
-                    $strDLI = '<img src="'.$downloadIcon.'" alt="File-Icon" />';
+            // Render DownloadIcon
+            if (empty($this->conf['downloadIcon'])) {
+                // If DownloadIcon is not configured, we try to get Icon by file-ext
+                try {
+                    $fileObject = ResourceFactory::getInstance()->retrieveFileOrFolderObject(
+                        $this->filebasepath . $image
+                    );
+                    $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+                    $fileExtIcon = $iconFactory->getIconForResource($fileObject, Icon::SIZE_SMALL)->render();
+                } catch (\Exception $e) {
+                    $fileExtIcon = sprintf(
+                        '<img src="%s" alt="allgemeine Datei-Ikone" />&nbsp;',
+                        PathUtility::getAbsoluteWebPath(
+                            GeneralUtility::getFileAbsFileName($this->conf['missingDownloadIcon'])
+                        )
+                    );
                 }
+            } else {
+                $fileExtIcon = sprintf(
+                    '<img src="%s" alt="File-Icon" />&nbsp;',
+                    PathUtility::getAbsoluteWebPath(
+                        GeneralUtility::getFileAbsFileName($this->conf['downloadIcon'])
+                    )
+                );
             }
 
             // render the LINK-Part:
-            $content .= '<div class="linkOutput"><div class="dl-link">' . $strDLI . '&nbsp;';
+            $content .= '<div class="linkOutput"><div class="dl-link">' . $fileExtIcon . '&nbsp;';
             $content .= $this->pi_linkTP($fileName, $urlParameters= ['download' => $image, 'did' => $uid]);
             $content .= '</div>';
 

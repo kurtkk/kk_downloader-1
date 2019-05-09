@@ -14,7 +14,7 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-        'iconfile' => 'EXT:kk_downloader/icon_tx_kkdownloader_cat.gif',
+        'iconfile' => 'EXT:kk_downloader/Resources/Public/Icons/tx_kkdownloader_cat.gif',
     ],
     'interface' => [
         'showRecordFieldList' => 'sys_language_uid,l18n_parent,l18n_diffsource,hidden,cat'

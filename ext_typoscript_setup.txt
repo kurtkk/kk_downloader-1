@@ -6,14 +6,13 @@ plugin.tx_kkdownloader_pi1 {
   # download description (1 = filename.fileextension, 2 = filename, 3 = fileextension)
   linkdescription = 1
   # download icon
-  # if set to typo3/gfx/fileicons/ typo3 standard icons appear
-  # you can set own images like:
-  # downloadIcon = typo3conf/ext/kk_downloader/pi1/images/download.gif
-  downloadIcon = typo3/gfx/fileicons/
-  # if a download icon is missing (e.g. *.rar)
-  missingDownloadIcon = typo3conf/ext/kk_downloader/pi1/images/download.gif
-  # distance around image
-  imageDistance = 5
+  # leave empty to use Icons of TYPO3 (IconFactory)
+  # If you set an IconPath, this icon will be used for all Downloads
+  # Example: downloadIcon = EXT:kk_downloader/Resources/Public/Icons/MissingDownload.gif
+  downloadIcon =
+  # Use this Icon, if a file-extension could not be found
+  # Will only work, if downloadIcon is empty
+  missingDownloadIcon = EXT:kk_downloader/Resources/Public/Icons/MissingDownload.gif
   # image settings
   image {
     file.maxW = 80

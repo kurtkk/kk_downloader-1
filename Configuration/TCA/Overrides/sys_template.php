@@ -5,6 +5,6 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
     'kk_downloader',
-    'static/css/',
-    'downloader'
+    'Configuration/TypoScript/',
+    'KK Downloader'
 );

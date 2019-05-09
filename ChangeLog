@@ -30,6 +30,10 @@
   * Change IMAGE() call to cObjGetSingle()
   * Remove or change many deprecated code
   * Create date with f:format.date in template directly
+  * Moved all Icons to Resources/Public/Icons
+  * Moved TS-Template from styles/css to Configuration/TypoScript
+  * Remove imageDistance, as the result "$imagewidth" was not used
+  * Change downloadIcon handling. If not set, use Icons of Core, else use Icon of DownloadIcon
 
 2017-06-02  Kurt Kunig <kurt.kunig@kupix.de>
   * in class.tx_kkdownloader_addFieldsToFlexForm.php ergänzt: Kategorien alphabetisch sortiert!
