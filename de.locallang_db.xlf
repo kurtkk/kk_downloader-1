@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-05-07T08:00:40Z" product-name="kk_downloader">
+		<header/>
+		<body>
+			<trans-unit id="tt_content.list_type_pi1">
+				<source>KK Downloader</source>
+				<target>KK Downloader</target>
+			</trans-unit>
+
+			<trans-unit id="tx_kkdownloader_images">
+				<source>Download</source>
+				<target>Download</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_images.name">
+				<source>Download title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_images.image">
+				<source>File(s)</source>
+				<target>Download(s)</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_images.imagepreview">
+				<source>Preview image (optional)</source>
+				<target>Vorschaubild</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_images.description">
+				<source>Short description</source>
+				<target>Kurzbeschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_images.longdescription">
+				<source>Long description</source>
+				<target>Langbeschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_images.clicks">
+				<source>Clicks</source>
+				<target>Aufrufe</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_images.cat">
+				<source>Category</source>
+				<target>Kategorie</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_images.imagedescription">
+				<source>Link description</source>
+				<target>Link name</target>
+			</trans-unit>
+
+			<trans-unit id="tx_kkdownloader_cat">
+				<source>Category</source>
+				<target>Kategorie</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_cat.cat">
+				<source>Category</source>
+				<target>Kategorie</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

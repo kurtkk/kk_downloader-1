@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-05-07T08:00:40Z" product-name="kk_downloader">
+		<header/>
+		<body>
+			<trans-unit id="tx_kkdownloader.filesize">
+				<source>Show filesize</source>
+				<target>Dateigröße anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.imagepreview">
+				<source>Image preview?</source>
+				<target>Bild anzeigen?</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.results_at_a_time">
+				<source>No of items to show in one view before browsing</source>
+				<target>Maximale Anzahl Downloads auf einer Seite (bevor man blättern muss)</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showPagebrowser">
+				<source>Show pagebrowser</source>
+				<target>Seiten-Browser anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showCRDate">
+				<source>Show creation date/time of the download item</source>
+				<target>Datum/Zeit der Erstellung des Eintrags anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showEditDate">
+				<source>Show T3-object last edit date</source>
+				<target>Änderungsdatum des Eintrags anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showFileMDate">
+				<source>Show file last edit date</source>
+				<target>Änderungsdatum der Datei anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showDateLastDownload">
+				<source>Show date of last download</source>
+				<target>Datum des letzten Downloads anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showIPLastDownload">
+				<source>Show IP-address of last download</source>
+				<target>IP-Adresse des letzten Downloads anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showCRDate.nodate">
+				<source>No date/time</source>
+				<target>Keine Anzeige</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showCRDate.date">
+				<source>Only date</source>
+				<target>Nur Datum</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showCRDate.datetime">
+				<source>Date and Time</source>
+				<target>Datum und Zeit</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showCats">
+				<source>Show Categories</source>
+				<target>Kategorien anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_conf">
+				<source>Settings</source>
+				<target>Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_cat_all">
+				<source>All categories</source>
+				<target>Alle Kategorien</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader_cat.cat">
+				<source>Select categories</source>
+				<target>Wähle eine Kategorie aus</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.layout">
+				<source>Layout</source>
+				<target>Layout</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.layout1">
+				<source>Image top</source>
+				<target>Bild oben</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.layout2">
+				<source>Image right</source>
+				<target>Bild rechts</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.layout3">
+				<source>Image left</source>
+				<target>Bild links</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.layout4">
+				<source>Image bottom</source>
+				<target>Bild unten</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.showclicks">
+				<source>Display counted clicks</source>
+				<target>Anzahl Downloads anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.what_to_display">
+				<source>View</source>
+				<target>Ansicht</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.template_file">
+				<source>Template file</source>
+				<target>Template Datei</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.orderby">
+				<source>Sort (only View = "LIST")</source>
+				<target>Sortierung nach (bei Ansicht "LIST")</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.orderbyTitle">
+				<source>by title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.orderbyFilename">
+				<source>by file-name</source>
+				<target>Dateiname</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.orderbyCrDate">
+				<source>by creation date</source>
+				<target>Erstelldatum</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.orderbyLastModified">
+				<source>by date last modified</source>
+				<target>Datum letzte Änderung</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.orderbyCategory">
+				<source>by category</source>
+				<target>nach Kategorieindex</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.orderbyDateLastDownloaded">
+				<source>by date last downloaded</source>
+				<target>Datum letzter Download</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.orderbySorting">
+				<source>by sorting in sysfolder</source>
+				<target>nach Sortierung im Download-Ordner</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.ascdesc">
+				<source>Ascending/Descending</source>
+				<target>Sortierrichtung</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.asc">
+				<source>Ascending</source>
+				<target>aufsteigend</target>
+			</trans-unit>
+			<trans-unit id="tx_kkdownloader.desc">
+				<source>Descending</source>
+				<target>absteigend</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
